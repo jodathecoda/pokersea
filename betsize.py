@@ -61,7 +61,7 @@ def openbetflopsize_vs1(vilsstp, stp, boardstraight, boardflush, mystraight, myf
             pass
 
     if stp < 1.7:
-        allin_reasons = 1
+        allin_reasons = 0
     
     if allin_reasons:
         proposed_bet = 3*pot
@@ -174,7 +174,7 @@ def openbetflopsize_vs_more(vilsstp, stp, boardstraight, boardflush, mystraight,
             bet_big_reasons += 1
 
     if stp < 1.7:
-        allin_reasons = 1
+        allin_reasons = 0
     
     if allin_reasons:
         proposed_bet = 3*pot
@@ -296,7 +296,7 @@ def openbetturnsize(vilsstp, stp, boardstraight, boardflush, mystraight, myflush
             bet_small_reasons += 1
 
     if stp < 1:
-        allin_reasons = 1
+        allin_reasons = 0
     
     if allin_reasons:
         proposed_bet = 3*pot

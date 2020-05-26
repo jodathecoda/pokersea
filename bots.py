@@ -163,7 +163,8 @@ def bot_act(table, seat, street, game_type, smallblind, ante, tables):
                         #no one bet on the flop
                         if gamblers == 2:
                             if s.stp < 1.5  and equx > (s.threshold_flop_open_vs_one - settings.checks_on_flop*settings.threshold_added_open_from_checks):
-                                newbet = s.stack
+                                #newbet = s.stack
+                                newbet = 0
                             elif equx > (s.threshold_flop_open_vs_one - settings.checks_on_flop*settings.threshold_added_open_from_checks):
                                 flop_threshold = 1.0/(gamblers - 0.5) + common.check_to_the_raisor_effect(s.betting_lead)
                                 #we may bet, based on board and weather and stps decide size
@@ -208,7 +209,8 @@ def bot_act(table, seat, street, game_type, smallblind, ante, tables):
                         else:
                             #multipot
                             if s.stp < 1.5  and equx > (s.threshold_flop_open_vs_more - settings.checks_on_flop*settings.threshold_added_open_from_checks):
-                                newbet = s.stack
+                                #newbet = s.stack
+                                newbet = 0
                             elif equx > (s.threshold_flop_open_vs_more - settings.checks_on_flop*settings.threshold_added_open_from_checks):
                                 #we may bet, based on board and weather and stps decide size
                                 random_decision = round(random.uniform(0.0, 1.0),2)
@@ -473,7 +475,8 @@ def bot_act(table, seat, street, game_type, smallblind, ante, tables):
                         newbet = 0
                     if s.stp < 0.2:
                         #allin
-                        newbet += s.stack
+                        #newbet += s.stack
+                        newbet = 0
                     if wait_for_showdown:
                         newbet = 0
                     if newbet > biggest_bet:
@@ -523,7 +526,8 @@ def bot_act(table, seat, street, game_type, smallblind, ante, tables):
                         if gamblers == 2:
                             #heads up situation
                             if s.stp < 1.1  and equx > (s.threshold_turn_open_vs_one - settings.checks_on_turn*settings.threshold_added_open_from_checks):
-                                newbet = s.stack
+                                #newbet = s.stack
+                                newbet = 0
                             elif equx >= (s.threshold_turn_open_vs_one - settings.checks_on_turn*settings.threshold_added_open_from_checks):
                                 turn_threshold = 1.0/gamblers + 1.0/(3*gamblers) + common.check_to_the_raisor_effect(s.betting_lead)
                                 #we may bet, based on board and weather and stps decide size
@@ -601,8 +605,8 @@ def bot_act(table, seat, street, game_type, smallblind, ante, tables):
                         else:
                             #multipot
                             if s.stp < 1.1  and equx > (s.threshold_turn_open_vs_more - settings.checks_on_turn*settings.threshold_added_open_from_checks):
-
-                                newbet = s.stack
+                                #newbet = s.stack
+                                newbet = 0
                             elif equx >= (s.threshold_turn_open_vs_more - settings.checks_on_turn*settings.threshold_added_open_from_checks):
                                 turn_threshold = 1.0/gamblers + 1.0/(3*gamblers)
                                 random_decision = round(random.uniform(0.0, 1.0),2)
@@ -878,7 +882,8 @@ def bot_act(table, seat, street, game_type, smallblind, ante, tables):
                         newbet = 0
                     if s.stp < 0.2:
                         #allin
-                        newbet += s.stack
+                        #newbet += s.stack
+                        newbet = 0
                     if wait_for_showdown:
                         newbet = 0
                     if newbet > biggest_bet:
@@ -929,7 +934,8 @@ def bot_act(table, seat, street, game_type, smallblind, ante, tables):
                         if gamblers == 2:
                             #heads up situation
                             if s.stp < 1.1  and equx > (s.threshold_river_open_vs_one - settings.checks_on_river*settings.threshold_added_open_from_checks):
-                                newbet = s.stack
+                                #newbet = s.stack
+                                newbet = 0
                             elif equx > (s.threshold_river_open_vs_one - settings.checks_on_river*settings.threshold_added_open_from_checks):
                                 river_threshold = 1.0/gamblers + 1.0/(2*gamblers) + common.check_to_the_raisor_effect(s.betting_lead)
                                 #we may bet, based on board and weather and stps decide size
@@ -979,7 +985,8 @@ def bot_act(table, seat, street, game_type, smallblind, ante, tables):
                         else:
                             #multipot
                             if s.stp < 1.1  and equx > (s.threshold_river_open_vs_more - settings.checks_on_river*settings.threshold_added_open_from_checks):
-                                newbet = s.stack
+                                #newbet = s.stack
+                                newbet = 0
                             elif equx > (s.threshold_river_open_vs_more - settings.checks_on_river*settings.threshold_added_open_from_checks):
                                 river_threshold = 1.0/gamblers + 1.0/(2*gamblers)
                                 #we may bet, based on board and weather and stps decide size
@@ -1217,7 +1224,8 @@ def bot_act(table, seat, street, game_type, smallblind, ante, tables):
                         newbet = 0
                     if s.stp < 0.2:
                         #allin
-                        newbet += s.stack
+                        #newbet += s.stack
+                        newbet = 0
                     if wait_for_showdown:
                         newbet = 0
                     if newbet > biggest_bet:
