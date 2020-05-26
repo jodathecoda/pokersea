@@ -823,7 +823,8 @@ def betsizing(table, name, defending_range, game_type, smallblind, ante):
                 else:
                     if opened_already:
                         #call
-                        want_to_bet = biggest_bet - current_bet
+                        #want_to_bet = biggest_bet - current_bet
+                        want_to_bet = 0
                         if settings.debug_ranges:
                             if settings.colors_on:
                                 print(settings.CYAN + "light call" + settings.RESET)
@@ -839,7 +840,8 @@ def betsizing(table, name, defending_range, game_type, smallblind, ante):
                 want_to_bet = 0
     ratio = want_to_bet/stack
     if ratio > 0.7:
-        bet = stack
+        pass
+        #bet = stack
     else:
         bet = want_to_bet
     
