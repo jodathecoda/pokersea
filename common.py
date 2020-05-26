@@ -731,7 +731,7 @@ def betsizing(table, name, defending_range, game_type, smallblind, ante):
     if checkhands.handInRange(card1, card2, calling_range) and not checkhands.handInRange(card1, card2, raising_range):
         if stack_in_BBs < 10:
             want_to_bet = stack
-        elif gamblers == 2 and stp < 1.4:
+        elif gamblers == 2 and stp < 0.1:
             #want_to_bet = stack
             want_to_bet = 0
         else:
@@ -768,7 +768,7 @@ def betsizing(table, name, defending_range, game_type, smallblind, ante):
     elif checkhands.handInRange(card1, card2, raising_range):
         if stack_in_BBs < 10:
             want_to_bet = stack
-        elif gamblers == 2 and stp < 1.4:
+        elif gamblers == 2 and stp < 0.1:
             #want_to_bet = stack
             want_to_bet = 0
         else:
@@ -817,7 +817,7 @@ def betsizing(table, name, defending_range, game_type, smallblind, ante):
             if pot_odds < 0.29 and checkhands.billchen(dealt_hand) > 1.9: #out of position do not play weak hands
                 if stack_in_BBs < 10:
                     want_to_bet = stack
-                elif gamblers == 2 and stp < 1.4:
+                elif gamblers == 2 and stp < 0.1:
                     #want_to_bet = stack
                     want_to_bet = 0
                 else:

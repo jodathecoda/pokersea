@@ -162,7 +162,7 @@ def bot_act(table, seat, street, game_type, smallblind, ante, tables):
                     if s.bet == biggest_bet:
                         #no one bet on the flop
                         if gamblers == 2:
-                            if s.stp < 1.5  and equx > (s.threshold_flop_open_vs_one - settings.checks_on_flop*settings.threshold_added_open_from_checks):
+                            if s.stp < 0.1  and equx > (s.threshold_flop_open_vs_one - settings.checks_on_flop*settings.threshold_added_open_from_checks):
                                 #newbet = s.stack
                                 newbet = 0
                             elif equx > (s.threshold_flop_open_vs_one - settings.checks_on_flop*settings.threshold_added_open_from_checks):
@@ -208,7 +208,7 @@ def bot_act(table, seat, street, game_type, smallblind, ante, tables):
                                                 time.sleep(2)
                         else:
                             #multipot
-                            if s.stp < 1.5  and equx > (s.threshold_flop_open_vs_more - settings.checks_on_flop*settings.threshold_added_open_from_checks):
+                            if s.stp < 0.1  and equx > (s.threshold_flop_open_vs_more - settings.checks_on_flop*settings.threshold_added_open_from_checks):
                                 #newbet = s.stack
                                 newbet = 0
                             elif equx > (s.threshold_flop_open_vs_more - settings.checks_on_flop*settings.threshold_added_open_from_checks):
@@ -473,7 +473,7 @@ def bot_act(table, seat, street, game_type, smallblind, ante, tables):
 
                     if newbet > 0 and newbet < smallblind:
                         newbet = 0
-                    if s.stp < 0.2:
+                    if s.stp < 0.1:
                         #allin
                         #newbet += s.stack
                         newbet = 0
@@ -525,7 +525,7 @@ def bot_act(table, seat, street, game_type, smallblind, ante, tables):
                         #no one bet on the turn
                         if gamblers == 2:
                             #heads up situation
-                            if s.stp < 1.1  and equx > (s.threshold_turn_open_vs_one - settings.checks_on_turn*settings.threshold_added_open_from_checks):
+                            if s.stp < 0.1  and equx > (s.threshold_turn_open_vs_one - settings.checks_on_turn*settings.threshold_added_open_from_checks):
                                 #newbet = s.stack
                                 newbet = 0
                             elif equx >= (s.threshold_turn_open_vs_one - settings.checks_on_turn*settings.threshold_added_open_from_checks):
@@ -604,7 +604,7 @@ def bot_act(table, seat, street, game_type, smallblind, ante, tables):
                                                 time.sleep(2)
                         else:
                             #multipot
-                            if s.stp < 1.1  and equx > (s.threshold_turn_open_vs_more - settings.checks_on_turn*settings.threshold_added_open_from_checks):
+                            if s.stp < 0.1  and equx > (s.threshold_turn_open_vs_more - settings.checks_on_turn*settings.threshold_added_open_from_checks):
                                 #newbet = s.stack
                                 newbet = 0
                             elif equx >= (s.threshold_turn_open_vs_more - settings.checks_on_turn*settings.threshold_added_open_from_checks):
@@ -880,7 +880,7 @@ def bot_act(table, seat, street, game_type, smallblind, ante, tables):
 
                     if newbet > 0 and newbet < smallblind:
                         newbet = 0
-                    if s.stp < 0.2:
+                    if s.stp < 0.1:
                         #allin
                         #newbet += s.stack
                         newbet = 0
@@ -933,7 +933,7 @@ def bot_act(table, seat, street, game_type, smallblind, ante, tables):
                         #no one bet on the turn
                         if gamblers == 2:
                             #heads up situation
-                            if s.stp < 1.1  and equx > (s.threshold_river_open_vs_one - settings.checks_on_river*settings.threshold_added_open_from_checks):
+                            if s.stp < 0.1  and equx > (s.threshold_river_open_vs_one - settings.checks_on_river*settings.threshold_added_open_from_checks):
                                 #newbet = s.stack
                                 newbet = 0
                             elif equx > (s.threshold_river_open_vs_one - settings.checks_on_river*settings.threshold_added_open_from_checks):
@@ -984,7 +984,7 @@ def bot_act(table, seat, street, game_type, smallblind, ante, tables):
                                                 time.sleep(2)
                         else:
                             #multipot
-                            if s.stp < 1.1  and equx > (s.threshold_river_open_vs_more - settings.checks_on_river*settings.threshold_added_open_from_checks):
+                            if s.stp < 0.1  and equx > (s.threshold_river_open_vs_more - settings.checks_on_river*settings.threshold_added_open_from_checks):
                                 #newbet = s.stack
                                 newbet = 0
                             elif equx > (s.threshold_river_open_vs_more - settings.checks_on_river*settings.threshold_added_open_from_checks):
@@ -1222,7 +1222,7 @@ def bot_act(table, seat, street, game_type, smallblind, ante, tables):
                             newbet = common.roundbet((2*pot/3)) 
                     if newbet > 0 and newbet < smallblind:
                         newbet = 0
-                    if s.stp < 0.2:
+                    if s.stp < 0.1:
                         #allin
                         #newbet += s.stack
                         newbet = 0
