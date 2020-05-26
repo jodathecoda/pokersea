@@ -731,9 +731,8 @@ def betsizing(table, name, defending_range, game_type, smallblind, ante):
     if checkhands.handInRange(card1, card2, calling_range) and not checkhands.handInRange(card1, card2, raising_range):
         if stack_in_BBs < 10:
             want_to_bet = stack
-        elif gamblers == 2 and stp < 0.1:
-            #want_to_bet = stack
-            want_to_bet = 0
+        elif gamblers == 2 and stp < 1.4:
+            want_to_bet = stack
         else:
             if opened_already:
                 if biggest_bet - current_bet >= stack:
@@ -768,9 +767,8 @@ def betsizing(table, name, defending_range, game_type, smallblind, ante):
     elif checkhands.handInRange(card1, card2, raising_range):
         if stack_in_BBs < 10:
             want_to_bet = stack
-        elif gamblers == 2 and stp < 0.1:
-            #want_to_bet = stack
-            want_to_bet = 0
+        elif gamblers == 2 and stp < 1.4:
+            want_to_bet = stack
         else:
             if opened_already:
                 randomized_part_bet = get_street_aggression(table, name)/10
@@ -816,15 +814,13 @@ def betsizing(table, name, defending_range, game_type, smallblind, ante):
             pot_odds = round((biggest_bet - current_bet)/pot, 2)
             if pot_odds < 0.29 and checkhands.billchen(dealt_hand) > 1.9: #out of position do not play weak hands
                 if stack_in_BBs < 10:
-                    want_to_bet = 0
-                elif gamblers == 2 and stp < 0.1:
-                    #want_to_bet = stack
-                    want_to_bet = 0
+                    want_to_bet = stack
+                elif gamblers == 2 and stp < 0.5:
+                    want_to_bet = stack
                 else:
                     if opened_already:
                         #call
-                        #want_to_bet = biggest_bet - current_bet
-                        want_to_bet = 0
+                        want_to_bet = biggest_bet - current_bet
                         if settings.debug_ranges:
                             if settings.colors_on:
                                 print(settings.CYAN + "light call" + settings.RESET)
@@ -840,9 +836,7 @@ def betsizing(table, name, defending_range, game_type, smallblind, ante):
                 want_to_bet = 0
     ratio = want_to_bet/stack
     if ratio > 0.7:
-        #pass
-        bet = 0
-        #bet = stack
+        bet = stack
     else:
         bet = want_to_bet
     
@@ -851,8 +845,7 @@ def betsizing(table, name, defending_range, game_type, smallblind, ante):
         if staack_to_bb < 12:
             stack_to_pot = float(getStackToPotRatio(t, name))
             if stack_to_pot < 1.3:
-                #bet = stack
-                bet = 0
+                bet = stack
     rounded_bet = roundbet(bet)
     return rounded_bet
 

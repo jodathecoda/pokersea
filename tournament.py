@@ -316,9 +316,8 @@ class Tournament:
                 t.seats[db_p].stack -= self.smallblind
             else:
                 #allin
-                #t.seats[db_p].bet += t.seats[db_p].stack
-                #t.seats[db_p].stack = 0
-                t.seats[db_p].bet = 0
+                t.seats[db_p].bet += t.seats[db_p].stack
+                t.seats[db_p].stack = 0
             t.pot += t.seats[db_p].bet
             if settings.hand_history:
                 common.update_total_pot(t)
@@ -331,9 +330,8 @@ class Tournament:
                 t.seats[next_p].stack -= self.smallblind*2
             else:
                 #allin
-                #t.seats[next_p].bet += t.seats[next_p].stack
-                #t.seats[next_p].stack = 0
-                t.seats[next_p].bet = 0
+                t.seats[next_p].bet += t.seats[next_p].stack
+                t.seats[next_p].stack = 0
             t.pot += t.seats[next_p].bet
             if settings.hand_history:
                 common.update_total_pot(t)
@@ -917,10 +915,10 @@ class Tournament:
 
             #set buttons
             for t in self.tables:
-                if settings.nash_push_fold:
+                #if settings.nash_push_fold:
                     #set stacks to 190
-                    for s in t.seats:
-                        s.stack = settings.nash_stack
+                    #for s in t.seats:
+                        #s.stack = settings.nash_stack
                 cur_db = common.find_button(t)
                 next_av_pos = common.find_next_occupied_chair(t, cur_db)
                 #set new button

@@ -60,8 +60,8 @@ def openbetflopsize_vs1(vilsstp, stp, boardstraight, boardflush, mystraight, myf
             #we have straight draw
             pass
 
-    if stp < 0.1:
-        allin_reasons = 0
+    if stp < 1.7:
+        allin_reasons = 1
     
     if allin_reasons:
         proposed_bet = 3*pot
@@ -173,8 +173,8 @@ def openbetflopsize_vs_more(vilsstp, stp, boardstraight, boardflush, mystraight,
             #we want to give bad pot odds to villain
             bet_big_reasons += 1
 
-    if stp < 0.1:
-        allin_reasons = 0
+    if stp < 1.7:
+        allin_reasons = 1
     
     if allin_reasons:
         proposed_bet = 3*pot
@@ -295,8 +295,8 @@ def openbetturnsize(vilsstp, stp, boardstraight, boardflush, mystraight, myflush
             #we have straight draw semi bluff
             bet_small_reasons += 1
 
-    if stp < 0.1:
-        allin_reasons = 0
+    if stp < 1:
+        allin_reasons = 1
     
     if allin_reasons:
         proposed_bet = 3*pot
