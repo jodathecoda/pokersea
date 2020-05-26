@@ -732,7 +732,8 @@ def betsizing(table, name, defending_range, game_type, smallblind, ante):
         if stack_in_BBs < 10:
             want_to_bet = stack
         elif gamblers == 2 and stp < 1.4:
-            want_to_bet = stack
+            #want_to_bet = stack
+            want_to_bet = 0
         else:
             if opened_already:
                 if biggest_bet - current_bet >= stack:
@@ -768,7 +769,8 @@ def betsizing(table, name, defending_range, game_type, smallblind, ante):
         if stack_in_BBs < 10:
             want_to_bet = stack
         elif gamblers == 2 and stp < 1.4:
-            want_to_bet = stack
+            #want_to_bet = stack
+            want_to_bet = 0
         else:
             if opened_already:
                 randomized_part_bet = get_street_aggression(table, name)/10
@@ -816,7 +818,8 @@ def betsizing(table, name, defending_range, game_type, smallblind, ante):
                 if stack_in_BBs < 10:
                     want_to_bet = stack
                 elif gamblers == 2 and stp < 1.4:
-                    want_to_bet = stack
+                    #want_to_bet = stack
+                    want_to_bet = 0
                 else:
                     if opened_already:
                         #call
