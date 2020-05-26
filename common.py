@@ -815,8 +815,10 @@ def betsizing(table, name, defending_range, game_type, smallblind, ante):
             if pot_odds < 0.29 and checkhands.billchen(dealt_hand) > 1.9: #out of position do not play weak hands
                 if stack_in_BBs < 10:
                     want_to_bet = stack
-                elif gamblers == 2 and stp < 0.5:
+                    #want_to_bet = 0
+                elif gamblers == 2 and stp < 1.4:
                     want_to_bet = stack
+                    #want_to_bet = 0 hereherehere
                 else:
                     if opened_already:
                         #call
@@ -844,8 +846,9 @@ def betsizing(table, name, defending_range, game_type, smallblind, ante):
         staack_to_bb = round(stack/(smallblind*2))
         if staack_to_bb < 12:
             stack_to_pot = float(getStackToPotRatio(t, name))
-            if stack_to_pot < 1.3:
+            if stack_to_pot < 0.3:
                 bet = stack
+                #bet = 0 hereherehere is the motherfucker
     rounded_bet = roundbet(bet)
     return rounded_bet
 
