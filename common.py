@@ -846,9 +846,9 @@ def betsizing(table, name, defending_range, game_type, smallblind, ante):
         staack_to_bb = round(stack/(smallblind*2))
         if staack_to_bb < 12:
             stack_to_pot = float(getStackToPotRatio(t, name))
-            if stack_to_pot < 0.3:
+            if stack_to_pot < 0.45:
                 bet = stack
-                #bet = 0 hereherehere is the motherfucker
+                #bet = 0 hereherehere
     rounded_bet = roundbet(bet)
     return rounded_bet
 
