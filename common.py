@@ -816,7 +816,7 @@ def betsizing(table, name, defending_range, game_type, smallblind, ante):
             pot_odds = round((biggest_bet - current_bet)/pot, 2)
             if pot_odds < 0.29 and checkhands.billchen(dealt_hand) > 1.9: #out of position do not play weak hands
                 if stack_in_BBs < 10:
-                    want_to_bet = stack
+                    want_to_bet = 0
                 elif gamblers == 2 and stp < 0.1:
                     #want_to_bet = stack
                     want_to_bet = 0
