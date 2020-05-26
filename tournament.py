@@ -316,8 +316,9 @@ class Tournament:
                 t.seats[db_p].stack -= self.smallblind
             else:
                 #allin
-                t.seats[db_p].bet += t.seats[db_p].stack
-                t.seats[db_p].stack = 0
+                #t.seats[db_p].bet += t.seats[db_p].stack
+                #t.seats[db_p].stack = 0
+                t.seats[db_p].bet = 0
             t.pot += t.seats[db_p].bet
             if settings.hand_history:
                 common.update_total_pot(t)
@@ -330,8 +331,9 @@ class Tournament:
                 t.seats[next_p].stack -= self.smallblind*2
             else:
                 #allin
-                t.seats[next_p].bet += t.seats[next_p].stack
-                t.seats[next_p].stack = 0
+                #t.seats[next_p].bet += t.seats[next_p].stack
+                #t.seats[next_p].stack = 0
+                t.seats[next_p].bet = 0
             t.pot += t.seats[next_p].bet
             if settings.hand_history:
                 common.update_total_pot(t)
