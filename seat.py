@@ -35,7 +35,7 @@ class Seat:
         self.face = settings.list_faces.pop()
         if game_type == 'h':
             if settings.nash_push_fold:
-                self.stack = 190
+                self.stack = settings.nash_stack
             else:
                 self.stack = round(settings.starting_stacks)
         elif game_type == 's':

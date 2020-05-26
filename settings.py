@@ -74,6 +74,10 @@ class Hand_History_Buffer:
         self.hhb.append("PokerSea hand history file")
 
 
+global nash_stack
+#less than 10 bb
+nash_stack = 190
+
 global nash_push_fold #when this flag is set bots will use heads up 10 bb nash push fold chart
 nash_push_fold = 1
 
