@@ -915,10 +915,10 @@ class Tournament:
 
             #set buttons
             for t in self.tables:
-                if settings.nash_push_fold:
+                #if settings.nash_push_fold:
                     #set stacks to 190
-                    for s in t.seats:
-                        s.stack = settings.nash_stack
+                    #for s in t.seats:
+                        #s.stack = settings.nash_stack
                 cur_db = common.find_button(t)
                 next_av_pos = common.find_next_occupied_chair(t, cur_db)
                 #set new button
