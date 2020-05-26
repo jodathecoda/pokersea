@@ -90,9 +90,19 @@ def rangeselector(situation, table, botname, smallblind, ante):
             t.seats[index].learning_range_name = "range_hd_open"
             common.debugranges(situation, "range_hd_open_cutted")
     elif situation == "allin10BB-wearehere-0behind":
-        selected_range = t.seats[index].range_call_vs_under10bb_push_0_left_behind
-        t.seats[index].learning_range_name = "range_call_vs_under10bb_push_0_left_behind"
-        common.debugranges(situation, "range_call_vs_under10bb_push_0_left_behind")
+        if settings.nash_push_fold:
+            selected_range = t.seats[index].range_nash_heads_up_10bb_call
+            t.seats[index].learning_range_name = "range_nash_heads_up_10bb_call"
+            common.debugranges(situation, "range_nash_heads_up_10bb_call")
+        else:
+            if settings.nash_push_fold:
+                selected_range = t.seats[index].range_nash_heads_up_10bb_call
+                t.seats[index].learning_range_name = "range_nash_heads_up_10bb_call"
+                common.debugranges(situation, "range_nash_heads_up_10bb_call")
+            else:
+                selected_range = t.seats[index].range_call_vs_under10bb_push_0_left_behind
+                t.seats[index].learning_range_name = "range_call_vs_under10bb_push_0_left_behind"
+                common.debugranges(situation, "range_call_vs_under10bb_push_0_left_behind")
     elif situation == "allin10BB-wearehere-1behind":
         selected_range = t.seats[index].range_call_vs_under10bb_push_1_left_behind
         t.seats[index].learning_range_name = "range_call_vs_under10bb_push_1_left_behind"
@@ -233,10 +243,16 @@ def rangeselector(situation, table, botname, smallblind, ante):
         selected_range = t.seats[index].range_top1
         common.debugranges(situation, "range_top1")
     elif situation == "10BB-1limper-0behind":
-        selected_range = t.seats[index].range_under10bb_push_vs_1
-        t.seats[index].learning_range_name = "range_under10bb_push_vs_1"
-        t.seats[index].want_to_push = 1
-        common.debugranges(situation, "range_under10bb_push_vs_1")
+        if settings.nash_push_fold:
+            selected_range = t.seats[index].range_nash_heads_up_10bb_push
+            t.seats[index].learning_range_name = "range_nash_heads_up_10bb_push"
+            t.seats[index].want_to_push = 1
+            common.debugranges(situation, "range_nash_heads_up_10bb_push")
+        else:
+            selected_range = t.seats[index].range_under10bb_push_vs_1
+            t.seats[index].learning_range_name = "range_under10bb_push_vs_1"
+            t.seats[index].want_to_push = 1
+            common.debugranges(situation, "range_under10bb_push_vs_1")
     elif situation == "10BB-1limper-1behind":
         selected_range = t.seats[index].range_under10bb_push_vs_2
         t.seats[index].learning_range_name = "range_under10bb_push_vs_2"
@@ -268,10 +284,16 @@ def rangeselector(situation, table, botname, smallblind, ante):
         t.seats[index].want_to_push= 1
         common.debugranges(situation, "range_under10bb_push_vs_more")
     elif situation == "10BB-noopen-wearehere-1behind":
-        selected_range = t.seats[index].range_under10bb_push_vs_1
-        t.seats[index].learning_range_name = "range_under10bb_push_vs_1"
-        t.seats[index].want_to_push = 1
-        common.debugranges(situation, "range_under10bb_push_vs_1")
+        if settings.nash_push_fold:
+            selected_range = t.seats[index].range_nash_heads_up_10bb_push
+            t.seats[index].learning_range_name = "range_nash_heads_up_10bb_push"
+            t.seats[index].want_to_push = 1
+            common.debugranges(situation, "range_nash_heads_up_10bb_push")
+        else:
+            selected_range = t.seats[index].range_under10bb_push_vs_1
+            t.seats[index].learning_range_name = "range_under10bb_push_vs_1"
+            t.seats[index].want_to_push = 1
+            common.debugranges(situation, "range_under10bb_push_vs_1")
     elif situation == "10BB-noopen-wearehere-2behind":
         selected_range = t.seats[index].range_under10bb_push_vs_2
         t.seats[index].learning_range_name = "range_under10bb_push_vs_2"
@@ -283,10 +305,16 @@ def rangeselector(situation, table, botname, smallblind, ante):
         t.seats[index].want_to_push = 1
         common.debugranges(situation, "range_under10bb_push_vs_more")
     elif situation == "10BB-opened-0behind":
-        selected_range = t.seats[index].range_under10bb_push_vs_1
-        t.seats[index].learning_range_name = "range_under10bb_push_vs_1"
-        t.seats[index].want_to_push = 1
-        common.debugranges(situation, "range_under10bb_push_vs_1")
+        if settings.nash_push_fold:
+            selected_range = t.seats[index].range_nash_heads_up_10bb_push
+            t.seats[index].learning_range_name = "range_nash_heads_up_10bb_push"
+            t.seats[index].want_to_push = 1
+            common.debugranges(situation, "range_nash_heads_up_10bb_push")
+        else:
+            selected_range = t.seats[index].range_under10bb_push_vs_1
+            t.seats[index].learning_range_name = "range_under10bb_push_vs_1"
+            t.seats[index].want_to_push = 1
+            common.debugranges(situation, "range_under10bb_push_vs_1")
     elif situation == "10BB-opened-1behind":
         selected_range = t.seats[index].range_under10bb_push_vs_2
         t.seats[index].learning_range_name = "range_under10bb_push_vs_2"
@@ -337,9 +365,14 @@ def rangeselector(situation, table, botname, smallblind, ante):
             selected_range = t.seats[index].range_atc
             common.debugranges(situation, "range_any_two_cards")
         elif t.seats[index].stack <= smallblind*20:
-            selected_range = t.seats[index].range_under10bb_push_vs_1
-            t.seats[index].learning_range_name = "range_under10bb_push_vs_1"
-            common.debugranges(situation, "range_under10bb_push_vs_1")
+            if settings.nash_push_fold:
+                selected_range = t.seats[index].range_nash_heads_up_10bb_push
+                t.seats[index].learning_range_name = "range_nash_heads_up_10bb_push"
+                common.debugranges(situation, "range_nash_heads_up_10bb_push")
+            else:
+                selected_range = t.seats[index].range_under10bb_push_vs_1
+                t.seats[index].learning_range_name = "range_under10bb_push_vs_1"
+                common.debugranges(situation, "range_under10bb_push_vs_1")
         else:
             #determine if you have position on villain so can use the proper defend range
             villain_position = common.getFirstLimper(t, smallblind, ante)
@@ -956,9 +989,14 @@ def rangeselector(situation, table, botname, smallblind, ante):
             selected_range = t.seats[index].range_atc
             common.debugranges(situation, "range_any_two_cards")
         elif t.seats[index].stack <= smallblind*20:
-            selected_range = t.seats[index].range_under10bb_push_vs_1
-            t.seats[index].learning_range_name = "range_under10bb_push_vs_1"
-            common.debugranges(situation, "range_under10bb_push_vs_1")
+            if settings.nash_push_fold:
+                selected_range = t.seats[index].range_nash_heads_up_10bb_push
+                t.seats[index].learning_range_name = "range_nash_heads_up_10bb_push"
+                common.debugranges(situation, "range_nash_heads_up_10bb_push")
+            else:
+                selected_range = t.seats[index].range_under10bb_push_vs_1
+                t.seats[index].learning_range_name = "range_under10bb_push_vs_1"
+                common.debugranges(situation, "range_under10bb_push_vs_1")
         else:
             #determine if you have position on villain so can use the proper defend range
             villain_position = common.getFirstOpener(t, smallblind, ante)
@@ -1175,9 +1213,14 @@ def rangeselector(situation, table, botname, smallblind, ante):
         if t.seats[index].stack <= smallblind*20: #if we are under 10BBs
             if t.seats[villain_position_number].last5betscrazy >= 2: #last 5 plays he used 2 times big sizing so play it wider
                 if gamblers == 2:
-                    selected_range = t.seats[index].range_under10bb_push_vs_1
-                    t.seats[index].learning_range_name = "range_under10bb_push_vs_1"
-                    common.debugranges(situation, "range_under10bb_push_vs_1")
+                    if settings.nash_push_fold:
+                        selected_range = t.seats[index].range_nash_heads_up_10bb_push
+                        t.seats[index].learning_range_name = "range_nash_heads_up_10bb_push"
+                        common.debugranges(situation, "range_nash_heads_up_10bb_push")
+                    else:
+                        selected_range = t.seats[index].range_under10bb_push_vs_1
+                        t.seats[index].learning_range_name = "range_under10bb_push_vs_1"
+                        common.debugranges(situation, "range_under10bb_push_vs_1")
                 elif gamblers == 3:
                     selected_range = t.seats[index].range_under10bb_push_vs_2
                     t.seats[index].learning_range_name = "range_under10bb_push_vs_2"

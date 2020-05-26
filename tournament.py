@@ -1002,72 +1002,129 @@ class Tournament:
                     theleaderboard.append(l)
 
         #game is over, you can charge participants with byuin
-        for fishname in settings.participants:
-            if fishname in settings.allfishes:
-                huvalue = 0.0
-                spvalue = 0.0
-                cavalue = 0.0
-                mtvalue = 0.0
-                filename = cwd + "/fishes/" + fishname + "/bankroll.dat"
-                try:
-                    with open(filename, "r+") as f:
-                        lines = f.read().splitlines()
-                        huvalue = float(lines[0].replace('\U00002013', '-'))
-                        spvalue = float(lines[1].replace('\U00002013', '-'))
-                        cavalue = float(lines[2].replace('\U00002013', '-'))
-                        mtvalue = float(lines[3].replace('\U00002013', '-'))
-                    f.close()
+        if settings.nash_push_fold:
+            pass
+        else:
+            for fishname in settings.participants:
+                if fishname in settings.allfishes:
+                    huvalue = 0.0
+                    spvalue = 0.0
+                    cavalue = 0.0
+                    mtvalue = 0.0
+                    filename = cwd + "/fishes/" + fishname + "/bankroll.dat"
+                    try:
+                        with open(filename, "r+") as f:
+                            lines = f.read().splitlines()
+                            huvalue = float(lines[0].replace('\U00002013', '-'))
+                            spvalue = float(lines[1].replace('\U00002013', '-'))
+                            cavalue = float(lines[2].replace('\U00002013', '-'))
+                            mtvalue = float(lines[3].replace('\U00002013', '-'))
+                        f.close()
 
-                    if self.game_type == 'h':
-                        huvalue -= 1.0
-                    elif self.game_type == 's':
-                        spvalue -= 1.0
-                    elif self.game_type == 'c':
-                        cavalue -= round(settings.starting_stacks + settings.starting_stacks/3)
-                    elif self.game_type == 't':
-                        mtvalue -= 1.0
-                    else:
-                        print("unknown game type")
+                        if self.game_type == 'h':
+                            if settings.nash_push_fold:
+                                pass
+                            else:
+                                huvalue -= 1.0
+                        elif self.game_type == 's':
+                            spvalue -= 1.0
+                        elif self.game_type == 'c':
+                            cavalue -= round(settings.starting_stacks + settings.starting_stacks/3)
+                        elif self.game_type == 't':
+                            mtvalue -= 1.0
+                        else:
+                            print("unknown game type")
+                            dumb = input("]")
+                    except:
+                        print("no such file 2" + filename)
                         dumb = input("]")
-                except:
-                    print("no such file 2" + filename)
-                    dumb = input("]")
-                try:
-                    with open(filename, "r+") as f:
-                        if huvalue != 0.0:
-                            f.write(str(huvalue) + "\n")
+                    try:
+                        with open(filename, "r+") as f:
+                            if huvalue != 0.0:
+                                f.write(str(huvalue) + "\n")
+                            else:
+                                f.write("0.0\n")
+                            if spvalue != 0.0:
+                                f.write(str(spvalue) + "\n")
+                            else:
+                                f.write("0.0\n")
+                            if cavalue != 0.0:
+                                f.write(str(cavalue) + "\n")
+                            else:
+                                f.write("0.0\n")
+                            if mtvalue != 0.0:
+                                f.write(str(mtvalue) + "\n")
+                            else:
+                                f.write("0.0\n")
+                        f.close()
+                    except:
+                        print("no such file 2.5" + filename)
+                        dumb = input("]")
+                    
+            #if this is a cash game?
+            if self.game_type == 'c':
+                for s in self.tables[0].seats:
+                    if (s.stack > 0):
+                        s.stack = common.roundbet(s.stack)
+                        if s.name == settings.hero:
+                            pass
                         else:
-                            f.write("0.0\n")
-                        if spvalue != 0.0:
-                            f.write(str(spvalue) + "\n")
-                        else:
-                            f.write("0.0\n")
-                        if cavalue != 0.0:
-                            f.write(str(cavalue) + "\n")
-                        else:
-                            f.write("0.0\n")
-                        if mtvalue != 0.0:
-                            f.write(str(mtvalue) + "\n")
-                        else:
-                            f.write("0.0\n")
-                    f.close()
-                except:
-                    print("no such file 2.5" + filename)
-                    dumb = input("]")
-                
-        #if this is a cash game?
-        if self.game_type == 'c':
-            for s in self.tables[0].seats:
-                if (s.stack > 0):
-                    s.stack = common.roundbet(s.stack)
-                    if s.name == settings.hero:
+                            filename = cwd + "/fishes/" + s.name + "/bankroll.dat"
+                            huvalue = 0.0
+                            spvalue = 0.0
+                            cavalue = 0.0
+                            mtvalue = 0.0
+                            try:
+                                with open(filename, "r") as f:
+                                    lines = f.read().splitlines()
+                                    huvalue = float(lines[0].replace('\U00002013', '-'))
+                                    spvalue = float(lines[1].replace('\U00002013', '-'))
+                                    cavalue = float(lines[2].replace('\U00002013', '-'))
+                                    mtvalue = float(lines[3].replace('\U00002013', '-'))
+                                f.close()
+                            except:
+                                print("no such file 7" + filename)
+                                dumb = input("]")
+                            try:
+                                with open(filename, "w") as f:
+                                    cavalue += s.stack
+                                    f.write(str(huvalue) + "\n")
+                                    f.write(str(spvalue) + "\n")
+                                    f.write(str(cavalue) + "\n")
+                                    f.write(str(mtvalue) + "\n")
+                                f.close()
+                            except:
+                                print("no such file 7" + filename)
+                                dumb = input("]")
+                                                
+                            
+                if settings.view == 1 or settings.view == 2:
+                    print("table is closed!")
+                    time.sleep(3)
+            elif self.game_type == 't':
+                if settings.view == 1 or settings.view == 2:
+                    print("the winner is: " + theleaderboard[0])
+                    time.sleep(3)
+                while "    " in theleaderboard:
+                    theleaderboard.remove("    ")
+                if len(theleaderboard) == 5:
+                    settings.mttprize = [21,15,9,5,4]
+                elif len(theleaderboard) == 4:
+                    settings.mttprize = [22,16,10,6]
+                elif len(theleaderboard) == 3:
+                    settings.mttprize = [24,18,12]
+                elif len(theleaderboard) == 2:
+                    settings.mttprize = [30,24]
+                elif len(theleaderboard) == 1:
+                    settings.mttprize = [54]
+                for count in range(len(theleaderboard)):
+                    if theleaderboard[count] == settings.hero:
+                        #fishname = theleaderboard[count]
+                        #we have human player
                         pass
                     else:
-                        filename = cwd + "/fishes/" + s.name + "/bankroll.dat"
-                        huvalue = 0.0
-                        spvalue = 0.0
-                        cavalue = 0.0
-                        mtvalue = 0.0
+                        fishname = theleaderboard[count]
+                        filename = cwd + "/fishes/" + fishname + "/bankroll.dat"
                         try:
                             with open(filename, "r") as f:
                                 lines = f.read().splitlines()
@@ -1077,47 +1134,44 @@ class Tournament:
                                 mtvalue = float(lines[3].replace('\U00002013', '-'))
                             f.close()
                         except:
-                            print("no such file 7" + filename)
+                            print("no such file 11" + filename)
                             dumb = input("]")
+                        mtvalue += settings.mttprize[count]
                         try:
                             with open(filename, "w") as f:
-                                cavalue += s.stack
-                                f.write(str(huvalue) + "\n")
-                                f.write(str(spvalue) + "\n")
-                                f.write(str(cavalue) + "\n")
-                                f.write(str(mtvalue) + "\n")
+                                if huvalue != 0.0:
+                                    f.write(str(huvalue) + "\n")
+                                else:
+                                    f.write("0.0\n")
+                                if spvalue != 0.0:
+                                    f.write(str(spvalue) + "\n")
+                                else:
+                                    f.write("0.0\n")
+                                if cavalue != 0.0:
+                                    f.write(str(cavalue) + "\n")
+                                else:
+                                    f.write("0.0\n")
+                                if mtvalue != 0.0:
+                                    f.write(str(mtvalue) + "\n")
+                                else:
+                                    f.write("0.0\n")
                             f.close()
                         except:
-                            print("no such file 7" + filename)
+                            print("no such file 12" + filename)
                             dumb = input("]")
-                                               
-                        
-            if settings.view == 1 or settings.view == 2:
-                print("table is closed!")
-                time.sleep(3)
-        elif self.game_type == 't':
-            if settings.view == 1 or settings.view == 2:
-                print("the winner is: " + theleaderboard[0])
-                time.sleep(3)
-            while "    " in theleaderboard:
-                theleaderboard.remove("    ")
-            if len(theleaderboard) == 5:
-                settings.mttprize = [21,15,9,5,4]
-            elif len(theleaderboard) == 4:
-                settings.mttprize = [22,16,10,6]
-            elif len(theleaderboard) == 3:
-                settings.mttprize = [24,18,12]
-            elif len(theleaderboard) == 2:
-                settings.mttprize = [30,24]
-            elif len(theleaderboard) == 1:
-                settings.mttprize = [54]
-            for count in range(len(theleaderboard)):
-                if theleaderboard[count] == settings.hero:
-                    #fishname = theleaderboard[count]
+                settings.mttprize = [19,14,9,5,4,3] #reset back to normal for the next tourney
+
+
+            elif self.game_type == 's':
+                if settings.view == 1 or settings.view == 2:
+                    print("the winner is: " + theleaderboard[0]) 
+                    time.sleep(3)
+                if theleaderboard[0] == settings.hero:
+                    #fishname = theleaderboard[0]
                     #we have human player
                     pass
                 else:
-                    fishname = theleaderboard[count]
+                    fishname = theleaderboard[0]
                     filename = cwd + "/fishes/" + fishname + "/bankroll.dat"
                     try:
                         with open(filename, "r") as f:
@@ -1128,9 +1182,9 @@ class Tournament:
                             mtvalue = float(lines[3].replace('\U00002013', '-'))
                         f.close()
                     except:
-                        print("no such file 11" + filename)
+                        print("no such file 15" + filename)
                         dumb = input("]")
-                    mtvalue += settings.mttprize[count]
+                    spvalue += settings.spinprize
                     try:
                         with open(filename, "w") as f:
                             if huvalue != 0.0:
@@ -1151,104 +1205,57 @@ class Tournament:
                                 f.write("0.0\n")
                         f.close()
                     except:
-                        print("no such file 12" + filename)
+                        print("no such file 16" + filename)
                         dumb = input("]")
-            settings.mttprize = [19,14,9,5,4,3] #reset back to normal for the next tourney
-
-
-        elif self.game_type == 's':
-            if settings.view == 1 or settings.view == 2:
-                print("the winner is: " + theleaderboard[0]) 
-                time.sleep(3)
-            if theleaderboard[0] == settings.hero:
-                #fishname = theleaderboard[0]
-                #we have human player
-                pass
+            elif self.game_type == 'h' and settings.nash_push_fold == 0:
+                if settings.view == 1 or settings.view == 2:
+                    print("the winner is: " + theleaderboard[0])
+                    time.sleep(5)            
+                if theleaderboard[0] == settings.hero:
+                    #fishname = theleaderboard[0]
+                    #we have human player
+                    pass
+                else:
+                    fishname = theleaderboard[0]
+                    filename = cwd + "/fishes/" + fishname + "/bankroll.dat"
+                    try:
+                        with open(filename, "r") as f:
+                            lines = f.read().splitlines()
+                            huvalue = float(lines[0].replace('\U00002013', '-'))
+                            spvalue = float(lines[1].replace('\U00002013', '-'))
+                            cavalue = float(lines[2].replace('\U00002013', '-'))
+                            mtvalue = float(lines[3].replace('\U00002013', '-'))
+                        f.close()
+                    except:
+                        print("no such file 19" + filename)
+                        dumb = input("]")
+                    huvalue += settings.huprize
+                    try:
+                        with open(filename, "w") as f:
+                            if huvalue != 0.0:
+                                f.write(str(huvalue) + "\n")
+                            else:
+                                f.write("0.0\n")
+                            if spvalue != 0.0:
+                                f.write(str(spvalue) + "\n")
+                            else:
+                                f.write("0.0\n")
+                            if cavalue != 0.0:
+                                f.write(str(cavalue) + "\n")
+                            else:
+                                f.write("0.0\n")
+                            if mtvalue != 0.0:
+                                f.write(str(mtvalue) + "\n")
+                            else:
+                                f.write("0.0\n")
+                        f.close()
+                    except:
+                        print("no such file 20" + filename)
+                        dumb = input("]")
             else:
-                fishname = theleaderboard[0]
-                filename = cwd + "/fishes/" + fishname + "/bankroll.dat"
-                try:
-                    with open(filename, "r") as f:
-                        lines = f.read().splitlines()
-                        huvalue = float(lines[0].replace('\U00002013', '-'))
-                        spvalue = float(lines[1].replace('\U00002013', '-'))
-                        cavalue = float(lines[2].replace('\U00002013', '-'))
-                        mtvalue = float(lines[3].replace('\U00002013', '-'))
-                    f.close()
-                except:
-                    print("no such file 15" + filename)
-                    dumb = input("]")
-                spvalue += settings.spinprize
-                try:
-                    with open(filename, "w") as f:
-                        if huvalue != 0.0:
-                            f.write(str(huvalue) + "\n")
-                        else:
-                            f.write("0.0\n")
-                        if spvalue != 0.0:
-                            f.write(str(spvalue) + "\n")
-                        else:
-                            f.write("0.0\n")
-                        if cavalue != 0.0:
-                            f.write(str(cavalue) + "\n")
-                        else:
-                            f.write("0.0\n")
-                        if mtvalue != 0.0:
-                            f.write(str(mtvalue) + "\n")
-                        else:
-                            f.write("0.0\n")
-                    f.close()
-                except:
-                    print("no such file 16" + filename)
-                    dumb = input("]")
-        elif self.game_type == 'h':
-            if settings.view == 1 or settings.view == 2:
-                print("the winner is: " + theleaderboard[0])
-                time.sleep(5)            
-            if theleaderboard[0] == settings.hero:
-                #fishname = theleaderboard[0]
-                #we have human player
-                pass
-            else:
-                fishname = theleaderboard[0]
-                filename = cwd + "/fishes/" + fishname + "/bankroll.dat"
-                try:
-                    with open(filename, "r") as f:
-                        lines = f.read().splitlines()
-                        huvalue = float(lines[0].replace('\U00002013', '-'))
-                        spvalue = float(lines[1].replace('\U00002013', '-'))
-                        cavalue = float(lines[2].replace('\U00002013', '-'))
-                        mtvalue = float(lines[3].replace('\U00002013', '-'))
-                    f.close()
-                except:
-                    print("no such file 19" + filename)
-                    dumb = input("]")
-                huvalue += settings.huprize
-                try:
-                    with open(filename, "w") as f:
-                        if huvalue != 0.0:
-                            f.write(str(huvalue) + "\n")
-                        else:
-                            f.write("0.0\n")
-                        if spvalue != 0.0:
-                            f.write(str(spvalue) + "\n")
-                        else:
-                            f.write("0.0\n")
-                        if cavalue != 0.0:
-                            f.write(str(cavalue) + "\n")
-                        else:
-                            f.write("0.0\n")
-                        if mtvalue != 0.0:
-                            f.write(str(mtvalue) + "\n")
-                        else:
-                            f.write("0.0\n")
-                    f.close()
-                except:
-                    print("no such file 20" + filename)
-                    dumb = input("]")
-        else:
-            print("error in type of tournament for prizes")
-            time.sleep(2)
+                #print("error in type of tournament for prizes")
+                #nash heads up
+                time.sleep(2)
 
         endsum = 0
         for s in t.seats:

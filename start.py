@@ -1272,6 +1272,36 @@ def help_leaderboard():
     print("Current means last iteration of endless learning mode")
     dumb = input("]")
 
+#n nash heads up game
+def nash():
+    try:
+        settings.nash_push_fold = 1
+        settings.wsop_followfish = 0
+        settings.ante = 0
+        game_timings()
+        settings.learning = 0
+        settings.hand_history = 1
+        loops = settings.loop
+        settings.left_loops = settings.loop
+        while(1):
+            t = tournament.Tournament(2, 'h')
+            t.start()
+            t.run()
+            #loops -= 1
+            #settings.left_loops -= 1
+        settings.nash_push_fold = 0
+        return
+    except:
+        settings.nash_push_fold = 0
+        print(settings.RESET)
+        return
+
+def help_nash():
+    settings.print_logo_menu()
+    print("n Nash Heads Up push/fold game:                                     ")
+    print("push/fold game with 10 big blinds, bots use Nash charts")
+    dumb = input("]")
+
 #r Range view/edit
 def modify_range():
     settings.print_logo_menu()
@@ -1593,6 +1623,7 @@ while(1):
             print('j Time delays')
             print('k Hand history')
             print('l Leaderboard')
+            print('n Nash push/fold')
             print('o Colors and Layout')
             print('p Player On/Off')
             print('q Quit')
@@ -1660,10 +1691,10 @@ while(1):
             leaderboard()
         elif choice == 'hl':
             help_leaderboard()
-        #elif choice == 'm':
-            #modify_range()
-        #elif choice == 'hm':
-            #help_modify_range()
+        elif choice == 'n':
+            nash()
+        elif choice == 'hn':
+            help_nash()
         elif choice == 'o':
             colors_layout()
         elif choice == 'ho':
@@ -1677,10 +1708,8 @@ while(1):
         elif choice == 'hq':
             help_quitt()
         elif choice == 'r':
-            #view_bot_range()
             modify_range()
         elif choice == 'hr':
-            #help_view_bot_range()
             help_modify_range()
         elif choice == 's':
             spingo()
@@ -1690,10 +1719,6 @@ while(1):
             mtt()
         elif choice == 'ht':
             help_mtt()
-        #elif choice == 'u':
-            #usermanual()
-        #elif choice == 'hu':
-            #help_usermanual()
         elif choice == 'v':
             view_select()
         elif choice == 'hv':
