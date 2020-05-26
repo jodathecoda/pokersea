@@ -942,6 +942,10 @@ class Tournament:
                 else:
                     self.startHand(t)
                     if self.game_type != 'c':
+                        if settings.nash_push_fold:
+                            settings.nash_fish0 = t.seats[0].name
+                            settings.nash_fish1 = t.seats[1].name
+                            
                         self.iterations += 1
                         settings.current_iterations = self.iterations
                         if self.iterations == self.iterations_to_next_level:
@@ -1003,7 +1007,14 @@ class Tournament:
 
         #game is over, you can charge participants with byuin
         if settings.nash_push_fold:
-            pass
+            if theleaderboard[0] == "you":
+                settings.nash_you += 1
+            elif theleaderboard[1] == "you":
+                settings.nash_villain += 1
+            elif theleaderboard[0] == settings.nash_fish0:
+                settings.nash_0 += 1
+            else:
+                settings.nash_1 += 1
         else:
             for fishname in settings.participants:
                 if fishname in settings.allfishes:
@@ -1023,7 +1034,7 @@ class Tournament:
 
                         if self.game_type == 'h':
                             if settings.nash_push_fold:
-                                pass
+                                pass                            
                             else:
                                 huvalue -= 1.0
                         elif self.game_type == 's':
@@ -1207,6 +1218,7 @@ class Tournament:
                     except:
                         print("no such file 16" + filename)
                         dumb = input("]")
+                
             elif self.game_type == 'h' and settings.nash_push_fold == 0:
                 if settings.view == 1 or settings.view == 2:
                     print("the winner is: " + theleaderboard[0])

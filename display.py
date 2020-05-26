@@ -75,6 +75,15 @@ def print_1_table(counter_tables, table, game_type, smallblind, ante, tables):
             print(s.name + ":" + str(s.last3bets))
     '''
 
+    if settings.nash_push_fold:
+        if tables[counter_tables].seats[0].name == "you":
+            print("you: " + str(settings.nash_you) + "        villain: " + str(settings.nash_villain))
+        elif tables[counter_tables].seats[1].name == "you":
+            print("villain: " + str(settings.nash_villain) + "    you: " + str(settings.nash_you))
+        else:
+            print("seat0: " + str(settings.nash_0) + "      seat1: " + str(settings.nash_1))
+        print("")
+
     #line 0 HUD
     if settings.hud:
         display_vbet0 = " "

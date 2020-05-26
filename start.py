@@ -1275,6 +1275,12 @@ def help_leaderboard():
 #n nash heads up game
 def nash():
     try:
+        settings.nash_0 = 0
+        settings.nash_1 = 0
+        settings.nash_you = 0
+        settings.nash_villain = 0
+        nash_fish0 = ""
+        nash_fish1 = ""
         settings.nash_push_fold = 1
         settings.wsop_followfish = 0
         settings.ante = 0

@@ -77,6 +77,24 @@ class Hand_History_Buffer:
 global nash_push_fold #when this flag is set bots will use heads up 10 bb nash push fold chart
 nash_push_fold = 1
 
+global nash_0 #seat 0 win counter at nash push fold game
+nash_0 = 0
+
+global nash_1 #seat 1 win counter at nash push fold game
+nash_1 = 0
+
+global nash_fish0 # name of fish 0 in nash game
+nash_fish0 = ""
+
+global nash_fish1 # name of fish 0 in nash game
+nash_fish1 = ""
+
+global nash_you #player nash counter
+nash_you = 0
+
+global nash_villain #villain nash
+nash_villain = 0
+
 global pokerpool
 
 global analyser_flag
