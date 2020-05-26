@@ -123,6 +123,32 @@ class Seat:
                                  '66', '55', '44', '33', '22', 'k9s', 'k8s', 'k7s', 'k6s', 'k5s', 'k4s', 'k3s', 'k2s']
         self.range_preflop_light = ['43s', '42s', '54s', '53s', '65s', '64s', '76s', '75s', '87s', '86s', '98s', '97s']
         self.range_atc = [] #any two cards
+        self.range_nash_heads_up_10bb_push = ['aa', 'aks', 'aqs', 'ajs', 'ats', 'a9s', 'a8s', 'a7s' ,'a6s', 'a5s', 'a4s', 'a3s', 'a2s', \
+                                              'ako', 'kk', 'kqs', 'kjs', 'kts', 'k9s', 'k8s', 'k7s', 'k6s', 'k5s', 'k4s', 'k3s', 'k2s', \
+                                              'aqo', 'kqo', 'qq', 'qjs', 'qts', 'q9s', 'q8s', 'q7s', 'q6s', 'q5s', 'q4s', 'q3s', 'q2s', \
+                                              'ajo', 'kjo', 'qjo', 'jj', 'jts', 'j9s', 'j8s', 'j7s', 'j6s', 'j5s', 'j4s', 'j3s',        \
+                                              'ato', 'kto', 'qto', 'jto', 'tt', 't9s', 't8s', 't7s', 't6s', 't5s', 't4s',               \
+                                              'a9o', 'k9o', 'q9o', 'j9o', 't9o', '99', '98s', '97s', '96s', '95s',                      \
+                                              'a8o', 'k8o', 'q8o', 'j8o', 't8o', '98o', '88', '87s', '86s', '85s', '84s',               \
+                                              'a7o', 'k7o', 'q7o',               '97o', '87o', '77', '76s', '75s', '74s',               \
+                                              'a6o', 'k6o',                                    '76o', '66', '65s', '64s',               \
+                                              'a5o', 'k5o',                                                 '55',  '54s',               \
+                                              'a4o', 'k4o',                                                         '44',               \
+                                              'a3o', 'k3o',                                                                '33',        \
+                                              'a2o', 'k2o',                                                                       '22'  ]
+        self.range_nash_heads_up_10bb_call = ['aa', 'aks', 'aqs', 'ajs', 'ats', 'a9s', 'a8s', 'a7s' ,'a6s', 'a5s', 'a4s', 'a3s', 'a2s', \
+                                              'ako', 'kk', 'kqs', 'kjs', 'kts', 'k9s', 'k8s', 'k7s', 'k6s', 'k5s', 'k4s', 'k3s', 'k2s', \
+                                              'aqo', 'kqo', 'qq', 'qjs', 'qts', 'q9s', 'q8s', 'q7s',                                    \
+                                              'ajo', 'kjo', 'qjo', 'jj', 'jts', 'j9s', 'j8s',                                           \
+                                              'ato', 'kto', 'qto', 'jto', 'tt', 't9s',                                                  \
+                                              'a9o', 'k9o', 'q9o',              '99',                                                   \
+                                              'a8o', 'k8o',                            '88',                                            \
+                                              'a7o', 'k7o',                                   '77',                                     \
+                                              'a6o', 'k6o',                                           '66',                             \
+                                              'a5o', 'k5o',                                                 '55',                       \
+                                              'a4o',                                                              '44',                 \
+                                              'a3o',                                                                     '33',          \
+                                              'a2o',                                                                           '22'     ]
         self.stp = 0 #stack to pot ratio
         #flop threshold values vs 1
         self.threshold_flop_open_vs_one = 0.0
