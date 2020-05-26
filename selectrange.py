@@ -361,7 +361,7 @@ def rangeselector(situation, table, botname, smallblind, ante):
             selected_range = t.seats[index].range_fold
             common.debugranges(situation, "tough_spot_range")
     elif situation == "10BB+1limp-wearehere-0behind":
-        if stp <= 1:
+        if stp <= 0.3:
             selected_range = t.seats[index].range_atc
             common.debugranges(situation, "range_any_two_cards")
         elif t.seats[index].stack <= smallblind*20:
@@ -985,7 +985,7 @@ def rangeselector(situation, table, botname, smallblind, ante):
                 t.seats[index].learning_range_name = "range_safe"
                 common.debugranges(situation, "range_safe")
     elif situation == "10BB+opened-wearehere-0behind":
-        if stp <= 1:
+        if stp <= 0.3:
             selected_range = t.seats[index].range_atc
             common.debugranges(situation, "range_any_two_cards")
         elif t.seats[index].stack <= smallblind*20:
