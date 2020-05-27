@@ -79,7 +79,7 @@ global nash_stack
 nash_stack = 90
 
 global nash_push_fold #when this flag is set bots will use heads up 10 bb nash push fold chart
-nash_push_fold = 1
+nash_push_fold = 0
 
 global nash_0 #seat 0 win counter at nash push fold game
 nash_0 = 0
