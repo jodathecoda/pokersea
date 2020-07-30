@@ -29,6 +29,13 @@ settings.pokerpool = pool.Pool()
 #settings.pokerpool.update_all() # learning.py
 
 incognito = 0
+
+if len(sys.argv) > 1:
+    if sys.argv[1] == 'i':
+        #incognito mode
+        incognito = 1
+
+
 if incognito:
     settings.view = 4
     settings.oldview = 4
