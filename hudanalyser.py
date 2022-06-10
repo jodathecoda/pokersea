@@ -1207,7 +1207,6 @@ def help():
     dumb = input("]")
 
 def run():
-    dumb = input("]1")
     analysis_end = 0
     #starting conditions for analyser
     allcards = ['as', 'ks', 'qs', 'js', 'ts', '9s', '8s', '7s', '6s', '5s', '4s', '3s', '2s', \
@@ -1270,16 +1269,12 @@ def run():
 
     we_got_situation = 0
 
-    dumb = input("]2")
-    #enter big blind 
+
     valid_choice = 1
     settings.dumblind = 20
     settings.amap = [0,0,0,0,0,0]
 
-    dumb = input("]3")
-    #print("enter stack for seat0 /Dealer/:")
 
-    #stack = input("]")
 
 
     dum_tab.seats[0].displaystack = get_display_stack(stack0)
@@ -1287,46 +1282,19 @@ def run():
         settings.amap[0] = 1
     dum_tab.seats[0].face = get_face()
 
-    display.print_a_dummy_table(dum_tab)
-    dumb = input("]4")
-
-
     dum_tab.seats[1].displaystack = get_display_stack(stack1)
     if dum_tab.seats[1].displaystack != "  ":
         settings.amap[1] = 1
     dum_tab.seats[1].face = get_face()
     we_got_situation = 1
     print("we got situation")
-    dumb = input("]5")
     display.print_a_dummy_table(dum_tab)
     dumb = input("]6")
 
-    #print(" ")
-    #print("enter stack for seat2:")
-    #stack = input("]")
-    stack = -1 #heads up game, remove other players
-    if stack.isdigit() and int(stack) >= 0:
-        if int(stack) < settings.dumblind:
-            stack2 = settings.dumblind*1.5
-        else:
-            stack2 = int(stack)
-        if bigblind*1000 < stack2:
-            print("too deep, can not set more than 1000 big blinds stack")
-            print("stack set to 1000 big blinds")
-            stack2 = bigblind*1000
-        dum_tab.seats[2].displaystack = get_display_stack(stack2)
-        if dum_tab.seats[2].displaystack != "  ":
-            settings.amap[2] = 1
-        dum_tab.seats[2].face = get_face()
-    else:
-        #seat 3 is empty, so all after that are empty
-        stack2 = 0
-        stack3 = 0
-        stack4 = 0
-        stack5 = 0
-    display.print_a_dummy_table(dum_tab)
-
-    
+    stack2 = 0
+    stack3 = 0
+    stack4 = 0
+    stack5 = 0
     if stack2 > 1:
         print(" ")
         print("enter stack for seat3:")
