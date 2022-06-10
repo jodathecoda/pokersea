@@ -73,6 +73,7 @@ class Hand_History_Buffer:
         self.hhb = []
         self.hhb.append("PokerSea hand history file")
 
+# HUD Analyzer settings
 global hudanalyser
 hudanalyser = 0
 
@@ -80,6 +81,44 @@ hudanalyser = 0
 #if he is seated, blackfish will be BB
 global redfish_seated
 redfish_seated = 0
+
+#HuAnalyzer redfish open
+huanalyzer_open = ['aa', 'aks', 'aqs', 'ajs', 'ats', 'a9s', 'a8s', 'a7s' ,'a6s', 'a5s', 'a4s', 'a3s', 'a2s', \
+                                              'ako', 'kk', 'kqs', 'kjs', 'kts', 'k9s', 'k8s', 'k7s', 'k6s', 'k5s', 'k4s', 'k3s', 'k2s', \
+                                              'aqo', 'kqo', 'qq', 'qjs', 'qts', 'q9s', 'q8s', 'q7s',                                    \
+                                              'ajo', 'kjo', 'qjo', 'jj', 'jts', 'j9s', 'j8s',                                           \
+                                              'ato', 'kto', 'qto', 'jto', 'tt', 't9s',                                                  \
+                                              'a9o', 'k9o', 'q9o',              '99',                                                   \
+                                              'a8o', 'k8o',                            '88',                                            \
+                                              'a7o', 'k7o',                                   '77',                                     \
+                                              'a6o', 'k6o',                                           '66',                             \
+                                              'a5o', 'k5o',                                                 '55',                       \
+                                              'a4o',                                                              '44',                 \
+                                              'a3o',                                                                     '33',          \
+                                              'a2o',                                                                           '22'     ]
+
+#HuAnalyzer redfish call 3bet
+huanalyzer_call3bet = ['aa', 'kk', 'qq', 'jj', 'tt', 'aks', '99', 'aqs', 'ako', 'ajs', 'kqs', '88', 'ats', 'aqo', '77', 'a9s', 'a8s', 'a7s', 'a6s', 'a5s', 'a4s', 'a3s', 'a2s', 'ajo', 'ato', 'a9o', 'a8o', 'kqo']
+
+#HuAnalyzer 3bet from blackfish
+huanalyzer_3bet = ['aa', 'kk', 'qq', 'jj', 'tt', 'aks', '99', 'aqs', 'ako', 'ajs', 'kqs', '88', 'ats', 'aqo']
+
+#HuAnalyzer_call blackfish
+huanalyzer_call = ['aa', 'aks', 'aqs', 'ajs', 'ats', 'a9s', 'a8s', 'a7s' ,'a6s', 'a5s', 'a4s', 'a3s', 'a2s', \
+                                              'ako', 'kk', 'kqs', 'kjs', 'kts', 'k9s', 'k8s', 'k7s', 'k6s', 'k5s', 'k4s', 'k3s', 'k2s', \
+                                              'aqo', 'kqo', 'qq', 'qjs', 'qts', 'q9s', 'q8s', 'q7s',                                    \
+                                              'ajo', 'kjo', 'qjo', 'jj', 'jts', 'j9s', 'j8s',                                           \
+                                              'ato', 'kto', 'qto', 'jto', 'tt', 't9s',                                                  \
+                                              'a9o', 'k9o', 'q9o',              '99',                                                   \
+                                              'a8o', 'k8o',                            '88',                                            \
+                                              'a7o', 'k7o',                                   '77',                                     \
+                                              'a6o', 'k6o',                                           '66',                             \
+                                              'a5o', 'k5o',                                                 '55',                       \
+                                              'a4o',                                                              '44',                 \
+                                              'a3o',                                                                     '33',          \
+                                              'a2o',                                                                           '22'     ]
+
+#End HUD Analyzer settings
 
 
 global nash_stack

@@ -65,7 +65,13 @@ def rangeselector(situation, table, botname, smallblind, ante):
     elif situation == "10BB+opened-raised-back-to-original-opener":
         #your range is actually your open range, but since it is 3 bet pot cut it regarding 3bet size
         hero_position = common.getPreflopPosition_name(t, botname)
-        if hero_position == "ug":
+
+        if settings.hudanalyser == 1 and botname == "redfish":
+            selected_range = t.seats[index].hd_call3bet_hudanalyzer
+            t.seats[index].learning_range_name = "hd_call3bet_huanalyzer"
+            common.debugranges(situation, "hd_call3bet_huanalyzer")
+        
+        elif hero_position == "ug":
             selected_range = t.seats[index].range_ug_open
             t.seats[index].learning_range_name = "range_ug_open"
             common.debugranges(situation, "range_ug_open_cutted")
@@ -326,7 +332,12 @@ def rangeselector(situation, table, botname, smallblind, ante):
         t.seats[index].want_to_push = 1
         common.debugranges(situation, "range_under10bb_push_vs_more")
     elif situation == "10BB+noopen-wearehere-1behind":
-        if posname == "hd":
+        #redfish is always DB position in hudAnalyzer
+        if settings.hudanalyser == 1 and botname == "redfish":
+            selected_range = t.seats[index].hd_open_huanalyzer
+            t.seats[index].learning_range_name = "hd_open_huanalyzer"
+            common.debugranges(situation, "hd_open_huanalyzer")
+        elif posname == "hd":
             selected_range = t.seats[index].range_hd_open
             t.seats[index].learning_range_name = "range_hd_open"
             common.debugranges(situation, "range_hd_open")
@@ -985,7 +996,11 @@ def rangeselector(situation, table, botname, smallblind, ante):
                 t.seats[index].learning_range_name = "range_safe"
                 common.debugranges(situation, "range_safe")
     elif situation == "10BB+opened-wearehere-0behind":
-        if stp <= 0.3:
+        if settings.hudanalyser == 1 and botname == "blackfish":
+            selected_range = t.seats[index].hb_3bet_analyzer + t.seats[index].hb_call_analyzer
+            t.seats[index].learning_range_name = "hb_defend_huanalyzer"
+            common.debugranges(situation, "hb_defend_huanalyzer")
+        elif stp <= 0.3:
             selected_range = t.seats[index].range_atc
             common.debugranges(situation, "range_any_two_cards")
         elif t.seats[index].stack <= smallblind*20:

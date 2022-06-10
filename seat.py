@@ -152,6 +152,7 @@ class Seat:
                                               'a4o',                                                              '44',                 \
                                               'a3o',                                                                     '33',          \
                                               'a2o',                                                                           '22'     ]
+        
         self.stp = 0 #stack to pot ratio
         #flop threshold values vs 1
         self.threshold_flop_open_vs_one = 0.0

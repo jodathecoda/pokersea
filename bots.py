@@ -101,13 +101,31 @@ def bot_act(table, seat, street, game_type, smallblind, ante, tables):
                         situation = ""
                         respond_range = []
                         situation = preflop.preflop_interpreter(t, s.name, smallblind, ante)
-                        #print(situation)
-                        #dumb = input("]")
                         #as we dont have 4bets, the situations of interest are:
                         # 10BB+opened-raised-back-to-original-opener
                         # 10BB+noopen-wearehere-1behind
                         # 10BB+opened-wearehere-0behind
-                        respond_range = selectrange.rangeselector(situation, t, s.name, smallblind, ante)
+                        #dumb = input("before")
+                        if settings.hudanalyser == 1:
+                            if situation == "10BB+noopen-wearehere-1behind":
+                                #respond_range = "redfish/hd_open_huanalyzer"
+                                respond_range = settings.huanalyzer_open
+                            elif situation == "10BB+opened-raised-back-to-original-opener":
+                                #respond_range = "redfish/hd_call3bet_hudanalyzer.range"
+                                respond_range = settings.huanalyzer_call3bet
+                            elif situation == "10BB+opened-wearehere-0behind":
+                                #blackfish
+                                #respond_range = "blackfish/hb_3bet_analyzer" + "blackfish/hb_call_analyzer"
+                                # respond range for HB is blackfish, it will be defined in
+                                # common.betsizing module, as we do not have 4bets, so here it is unimportant
+                                respond_range = settings.huanalyzer_3bet + settings.huanalyzer_call
+                                #have to split them correctly in /common.betsizing
+                            else:
+                                print("hudAnalyzer unknown spot")
+                                dumb = input("]")
+                        else:
+                            respond_range = selectrange.rangeselector(situation, t, s.name, smallblind, ante)
+                        #dumb = input("after")
                         newbet = common.betsizing(t, s.name, respond_range, game_type, smallblind, ante)
                         if s.want_to_push:
                             if newbet > 0:
