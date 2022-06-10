@@ -1207,20 +1207,21 @@ def help():
     dumb = input("]")
 
 def run():
+    dumb = input("]1")
     analysis_end = 0
     #starting conditions for analyser
     allcards = ['as', 'ks', 'qs', 'js', 'ts', '9s', '8s', '7s', '6s', '5s', '4s', '3s', '2s', \
                 'ah', 'kh', 'qh', 'jh', 'th', '9h', '8h', '7h', '6h', '5h', '4h', '3h', '2h', \
                 'ad', 'kd', 'qd', 'jd', 'td', '9d', '8d', '7d', '6d', '5d', '4d', '3d', '2d', \
                 'ac', 'kc', 'qc', 'jc', 'tc', '9c', '8c', '7c', '6c', '5c', '4c', '3c', '2c']
-    stack0 = 0
-    stack1 = 0
+    stack0 = 1000
+    stack1 = 1000
     stack2 = 0
     stack3 = 0
     stack4 = 0
     stack5 = 0
     button_number = 0 #seat 0 is always button
-    bigblind = 0
+    bigblind = 20
     pot = 0
     board = ""
     starting_point = 'p' #p=preflop, f=flop, t=turn, r=river
@@ -1269,79 +1270,41 @@ def run():
 
     we_got_situation = 0
 
+    dumb = input("]2")
     #enter big blind 
     valid_choice = 1
-    while valid_choice:
-        settings.print_logo_analyser_menu()
-        display.print_a_dummy_table(dum_tab)
-        print(" ")
-        print("enter big blind for this hand(20-1000):")
-        dumbbut = input("]")
-        if dumbbut.isdigit():
-            if int(dumbbut) > 1000:
-                print("big blind set to 1000")
-                bigblind = 1000
-            elif int(dumbbut) < 20:
-                print("big blind set to 20")
-                bigblind = 20
-            else:
-                bigblind = int(dumbbut)
-            dum_tab.bigblind = bigblind
-            settings.dumblind = bigblind
-            valid_choice = 0
-        else:
-            print("not valid")
+    settings.dumblind = 20
     settings.amap = [0,0,0,0,0,0]
-    display.print_a_dummy_table(dum_tab)
-    print(" ")
-    print("enter stack for seat0 /Dealer/:")
 
-    stack = input("]")
-    if stack.isdigit() and int(stack) >= 0:
-        if int(stack) < settings.dumblind:
-            stack0 = settings.dumblind*1.5
-        else:
-            stack0 = int(stack)
-        if bigblind*1000 < stack0:
-            print("too deep, can not set more than 1000 big blinds stack")
-            print("stack set to 1000 big blinds")
-            stack0 = bigblind*1000
-        dum_tab.seats[0].displaystack = get_display_stack(stack0)
-        if dum_tab.seats[0].displaystack != "  ":
-            settings.amap[0] = 1
-        dum_tab.seats[0].face = get_face()
-    else:
-        print("dealer can not be empty seat")
-        time.sleep(2)
-        return
-    display.print_a_dummy_table(dum_tab)
+    dumb = input("]3")
+    #print("enter stack for seat0 /Dealer/:")
 
-    print(" ")
-    print("enter stack for seat1 /next to dealer/:")
-    stack = input("]")
-    if stack.isdigit() and int(stack) >= 0:
-        if int(stack) < settings.dumblind:
-            stack1 = settings.dumblind*1.5
-        else:
-            stack1 = int(stack)
-        if bigblind*1000 < stack1:
-            print("too deep, can not set more than 1000 big blinds stack")
-            print("stack set to 1000 big blinds")
-            stack1 = bigblind*1000
-        dum_tab.seats[1].displaystack = get_display_stack(stack1)
-        if dum_tab.seats[1].displaystack != "  ":
-            settings.amap[1] = 1
-        dum_tab.seats[1].face = get_face()
-        we_got_situation = 1
-    else:
-        print("at least two players need for a game")
-        time.sleep(2)
-        return
-    display.print_a_dummy_table(dum_tab)
+    #stack = input("]")
 
-    print(" ")
-    print("enter stack for seat2:")
-    stack = input("]")
+
+    dum_tab.seats[0].displaystack = get_display_stack(stack0)
+    if dum_tab.seats[0].displaystack != "  ":
+        settings.amap[0] = 1
+    dum_tab.seats[0].face = get_face()
+
+    display.print_a_dummy_table(dum_tab)
+    dumb = input("]4")
+
+
+    dum_tab.seats[1].displaystack = get_display_stack(stack1)
+    if dum_tab.seats[1].displaystack != "  ":
+        settings.amap[1] = 1
+    dum_tab.seats[1].face = get_face()
+    we_got_situation = 1
+    print("we got situation")
+    dumb = input("]5")
+    display.print_a_dummy_table(dum_tab)
+    dumb = input("]6")
+
+    #print(" ")
+    #print("enter stack for seat2:")
+    #stack = input("]")
+    stack = -1 #heads up game, remove other players
     if stack.isdigit() and int(stack) >= 0:
         if int(stack) < settings.dumblind:
             stack2 = settings.dumblind*1.5
