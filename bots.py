@@ -121,8 +121,12 @@ def bot_act(table, seat, street, game_type, smallblind, ante, tables):
                                 respond_range = settings.huanalyzer_3bet + settings.huanalyzer_call
                                 #have to split them correctly in /common.betsizing
                             else:
-                                print("hudAnalyzer unknown spot")
-                                dumb = input("]")
+                                # 10BB+1limp-wearehere-0behind
+                                #limped pot
+                                respond_range = settings.allcards
+                                #print(situation)
+                                #print("hudAnalyzer unknown spot")
+                                #dumb = input("]")
                         else:
                             respond_range = selectrange.rangeselector(situation, t, s.name, smallblind, ante)
                         #dumb = input("after")

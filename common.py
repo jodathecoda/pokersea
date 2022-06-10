@@ -680,6 +680,20 @@ def betsizing(table, name, defending_range, game_type, smallblind, ante):
         calling_range = current_range
         raising_range = []
 
+    if settings.hudanalyser == 1:
+        print(name)
+        if opened_already == 0:
+            #redfish HB open range
+            open_range = settings.huanalyzer_open
+        elif settings.threebet > 0:
+            #redfish HB call 3bet renage
+            raising_range = []
+            calling_range = settings.huanalyzer_call3bet
+        else:
+            #blackfish defends HB
+            raising_range = settings.huanalyzer_3bet
+            calling_range = settings.huanalyzer_call
+
     if settings.debug_ranges:
         if not settings.colors_on:
             if opened_already:
@@ -698,8 +712,11 @@ def betsizing(table, name, defending_range, game_type, smallblind, ante):
                     print(" calling range:")
                     rangeeditor.print_range_lines(calling_range)
             else:
-                open_range = []
-                open_range = raising_range + calling_range
+                if settings.hudanalyser == 1:
+                    open_range = settings.huanalyzer_open
+                else:
+                    open_range = []
+                    open_range = raising_range + calling_range
                 rangeeditor.print_range_lines(open_range)
             if settings.debug_ranges_stop_point:
                 dumb = input("]")
@@ -718,7 +735,10 @@ def betsizing(table, name, defending_range, game_type, smallblind, ante):
                     calling_range_colors = calling_range
                     rangeeditor.print_debug_color_ranges(card1, card2, calling_range_colors, raising_range_colors, open_range_colors)
             else:
-                open_range_colors = raising_range + calling_range
+                if settings.hudanalyser == 1:
+                    open_range = settings.huanalyzer_open
+                else:
+                    open_range_colors = raising_range + calling_range
                 raising_range_colors = []
                 calling_range_colors = []
                 rangeeditor.print_debug_color_ranges(card1, card2, calling_range_colors, raising_range_colors, open_range_colors)
