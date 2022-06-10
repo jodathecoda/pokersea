@@ -1514,6 +1514,7 @@ def help_hudanalyzer():
     print("up preflop ranges.")
 
 def hudanalyzer():
+    settings.hudanalyser = 1
     end_condition = 1
     settings.redfish_seated = 0
     #clear previous
@@ -1634,6 +1635,7 @@ def hudanalyzer():
             settings.report_bbv5 = " "
             settings.analyse_match = 0
             settings.analyser_flag = 0 #end analyser
+            settings.hudanalyser = 0
     except:
         print(settings.RESET)
         #restart analyser
@@ -1705,6 +1707,7 @@ def hudanalyzer():
         settings.report_bbv5 = " "
         settings.analyse_match = 0
         settings.analyser_flag = 0 #end analyser
+        settings.hudanalyser = 0
 
     
     

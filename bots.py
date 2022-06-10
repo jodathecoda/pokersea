@@ -89,7 +89,7 @@ def bot_act(table, seat, street, game_type, smallblind, ante, tables):
             if ((s.name != settings.hero) and (not settings.act_instead_of_bot)):
                 oldbet = s.bet
                 bet_command = ""
-                if len(t.board) < 2: #preflop
+                if len(t.board) < 2: #preflop HUBOTS HERE HERE
                     #analysis specific
                     if s.stack <= settings.dumblind*1.5 and settings.analyser_flag:
                         #explicit fold
@@ -101,6 +101,8 @@ def bot_act(table, seat, street, game_type, smallblind, ante, tables):
                         situation = ""
                         respond_range = []
                         situation = preflop.preflop_interpreter(t, s.name, smallblind, ante)
+                        #print(situation)
+                        #dumb = input("]")
                         respond_range = selectrange.rangeselector(situation, t, s.name, smallblind, ante)
                         newbet = common.betsizing(t, s.name, respond_range, game_type, smallblind, ante)
                         if s.want_to_push:
