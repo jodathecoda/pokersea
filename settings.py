@@ -73,6 +73,14 @@ class Hand_History_Buffer:
         self.hhb = []
         self.hhb.append("PokerSea hand history file")
 
+global hudanalyser
+hudanalyser = 1
+
+#this is for hudanalyser, dealer will be redfish,
+#if he is seated, blackfish will be BB
+global redfish_seated
+redfish_seated = 0
+
 
 global nash_stack
 #less than 10 bb

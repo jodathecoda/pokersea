@@ -345,7 +345,7 @@ class Analyser():
                     settings.analyser_flag = 0 # end of analysis
 
                 t = table.AnalysisTable(self.tabl_obj)
-                t.randomize_seats()
+                t.dont_randomize_seats()
                 tables = []
                 tables.append(t)
 
@@ -1289,7 +1289,7 @@ def run():
     we_got_situation = 1
     print("we got situation")
     display.print_a_dummy_table(dum_tab)
-    dumb = input("]6")
+    #dumb = input("]6")
 
     stack2 = 0
     stack3 = 0
@@ -1372,14 +1372,14 @@ def run():
             print(" ")
             print("enter starting point")
             print("p=preflop, f=flop, t=turn, r=river:")
-            dumbbut = input("]")
+            dumbbut = "p"
             if dumbbut in valid_choices:
                 starting_point = dumbbut
                 dum_tab.starting_point = dumbbut
                 valid_choice = 0
             else:
                 print("not valid")
-        display.print_a_dummy_table(dum_tab)
+        #display.print_a_dummy_table(dum_tab)
 
         if starting_point != 'p':
             #enter pot only if starting point is not preflop,
@@ -1398,130 +1398,41 @@ def run():
             display.print_a_dummy_table(dum_tab)
 
         #flop card1
-        print(" ")
-        print("enter flop card1:")
-        dumbbut = input("]")
-        if dumbbut in allcards:
-            flopcard1 = dumbbut
-            allcards = remove_cards_from_deck(allcards, flopcard1)
-        else:
-            flopcard1 = '[]'
+        flopcard1 = '[]'
         board += flopcard1
         dum_tab.displayboard += common.displayhand(flopcard1)
-        display.print_a_dummy_table(dum_tab)
+        #display.print_a_dummy_table(dum_tab)
         
         #flop card2
-        print(" ")
-        print("enter flop card2:")
-        dumbbut = input("]")
-        if dumbbut in allcards:
-            flopcard2 = dumbbut
-            allcards = remove_cards_from_deck(allcards, flopcard2)
-        else:
-            flopcard2 = '[]'
+        flopcard2 = '[]'
         board += flopcard2
         dum_tab.displayboard += common.displayhand(flopcard2)
-        display.print_a_dummy_table(dum_tab)
+        #display.print_a_dummy_table(dum_tab)
 
         #flop card3
-        print(" ")
-        print("enter flop card3:")
-        dumbbut = input("]")
-        if dumbbut in allcards:
-            flopcard3 = dumbbut
-            allcards = remove_cards_from_deck(allcards, flopcard3)
-        else:
-            flopcard3 = '[]'
+        flopcard3 = '[]'
         board += flopcard3
         dum_tab.displayboard += common.displayhand(flopcard3)
-        display.print_a_dummy_table(dum_tab)
+        #display.print_a_dummy_table(dum_tab)
 
         #turn card
-        print(" ")
-        print("enter turn card:")
-        dumbbut = input("]")
-        if dumbbut in allcards:
-            turncard = dumbbut
-            allcards = remove_cards_from_deck(allcards, turncard)
-        else:
-            turncard = '[]'
+        turncard = '[]'
         board += turncard
         dum_tab.displayboard += common.displayhand(turncard)
-        display.print_a_dummy_table(dum_tab)
+        #display.print_a_dummy_table(dum_tab)
 
         #river card
-        print(" ")
-        print("enter river card:")
-        dumbbut = input("]")
-        if dumbbut in allcards:
-            rivercard = dumbbut
-            allcards = remove_cards_from_deck(allcards, rivercard)
-        else:
-            rivercard = '[]'
+        rivercard = '[]'
         board += rivercard
         print("board: " + board)
         dum_tab.displayboard += common.displayhand(rivercard)
-        display.print_a_dummy_table(dum_tab)
+        #display.print_a_dummy_table(dum_tab)
 
         #seat0 hole cards
-        if stack0 > 0:
-            print(" ")
-            print("enter seat0 card1:")
-            dumbbut = input("]")
-            if dumbbut in allcards:
-                card01 = dumbbut
-                allcards = remove_cards_from_deck(allcards, card01)
-                dum_tab.seats[0].displaycard1 = common.displayhand(card01)
-            else:
-                #random card will be given at each iteration
-                dum_tab.seats[0].displaycard1 = '[]'
-            display.print_a_dummy_table(dum_tab)
-
-            print(" ")
-            print("enter seat0 card2:")
-            dumbbut = input("]")
-            if dumbbut in allcards:
-                card02 = dumbbut
-                allcards = remove_cards_from_deck(allcards, card02)
-                dum_tab.seats[0].displaycard2 = common.displayhand(card02)
-            else:
-                #random card will be given at each iteration
-                dum_tab.seats[0].displaycard2 = '[]'
-            display.print_a_dummy_table(dum_tab)
-        else:
-            #clear cards as folded
-            card01 = "  "
-            card02 = "  "
-
-        #seat1 hole cards
-        if stack1 > 0:
-            print(" ")
-            print("enter seat1 card1:")
-            dumbbut = input("]")
-            if dumbbut in allcards:
-                card11 = dumbbut
-                allcards = remove_cards_from_deck(allcards, card11)
-                dum_tab.seats[1].displaycard1 = common.displayhand(card11)
-            else:
-                #random card will be given at each iteration
-                dum_tab.seats[1].displaycard1 = '[]'
-            display.print_a_dummy_table(dum_tab)
-
-            print(" ")
-            print("enter seat1 card2:")
-            dumbbut = input("]")
-            if dumbbut in allcards:
-                card12 = dumbbut
-                allcards = remove_cards_from_deck(allcards, card12)
-                dum_tab.seats[1].displaycard2 = common.displayhand(card12)
-            else:
-                #random card will be given at each iteration
-                dum_tab.seats[1].displaycard2 = '[]'
-            display.print_a_dummy_table(dum_tab)   
-        else:
-            #clear cards as folded
-            card11 = "  "
-            card12 = "  "
+        dum_tab.seats[0].displaycard1 = '[]'
+        dum_tab.seats[0].displaycard2 = '[]'
+        dum_tab.seats[1].displaycard1 = '[]'
+        dum_tab.seats[1].displaycard2 = '[]'
 
         #seat2 hole cards
         if stack2 > 0:

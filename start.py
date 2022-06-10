@@ -1515,6 +1515,7 @@ def help_hudanalyzer():
 
 def hudanalyzer():
     end_condition = 1
+    settings.redfish_seated = 0
     #clear previous
     settings.bbvals0 = 0
     settings.bbvals1 = 0
