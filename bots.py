@@ -103,6 +103,10 @@ def bot_act(table, seat, street, game_type, smallblind, ante, tables):
                         situation = preflop.preflop_interpreter(t, s.name, smallblind, ante)
                         #print(situation)
                         #dumb = input("]")
+                        #as we dont have 4bets, the situations of interest are:
+                        # 10BB+opened-raised-back-to-original-opener
+                        # 10BB+noopen-wearehere-1behind
+                        # 10BB+opened-wearehere-0behind
                         respond_range = selectrange.rangeselector(situation, t, s.name, smallblind, ante)
                         newbet = common.betsizing(t, s.name, respond_range, game_type, smallblind, ante)
                         if s.want_to_push:
