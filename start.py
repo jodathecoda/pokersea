@@ -20,6 +20,7 @@ import pokerface
 import report
 import leaderboards
 import analyser
+import hudanalyser
 import pool
 
 global cwd
@@ -451,6 +452,7 @@ def analyse():
         settings.analyse_match = 0
         settings.analyser_flag = 0 #end analyser
 
+#ha
 def help_analyse():
     settings.print_logo_menu()
     print("Setup a hand between two and six players.            ")
@@ -1504,6 +1506,206 @@ def help_mtt():
     print("playing. If you want to see more in-depth information")
     print("about the bot's play, see the section 'v View type'. ")
     dumb = input("]")
+
+#u
+def help_hudanalyzer():
+    print("select headsup dealer range, select bigblind range.")
+    print("postflop skills will be the same, so analyze is heads")
+    print("up preflop ranges.")
+
+def hudanalyzer():
+    end_condition = 1
+    #clear previous
+    settings.bbvals0 = 0
+    settings.bbvals1 = 0
+    settings.bbvals2 = 0
+    settings.bbvals3 = 0
+    settings.bbvals4 = 0
+    settings.bbvals5 = 0
+    settings.bbv0 = "   "
+    settings.bbv1 = "   "
+    settings.bbv2 = "   "
+    settings.bbv3 = "   "
+    settings.bbv4 = "   "
+    settings.bbv5 = "   "
+    
+    try:
+        settings.analyser_flag = 1
+        while(end_condition):
+            settings.print_logo_analyser_menu()
+            #run analyser
+            #set fast speed timings
+            #save current timings in local vars to restore it later:
+            bot_time_to_act = settings.bot_time_to_act
+            bot_time_to_act_preflop = settings.bot_time_to_act_preflop
+            bot_time_to_act_flop = settings.bot_time_to_act_flop
+            bot_time_to_act_turn = settings.bot_time_to_act_turn
+            bot_time_to_act_river = settings.bot_time_to_act_river
+            time_to_wait_board = settings.time_to_wait_board
+            selected_bot_time_to_act = settings.selected_bot_time_to_act
+            selected_bot_time_to_act_preflop = settings.selected_bot_time_to_act_preflop
+            selected_bot_time_to_act_flop = settings.selected_bot_time_to_act_flop
+            selected_bot_time_to_act_turn = settings.selected_bot_time_to_act_turn
+            selected_bot_time_to_act_river = settings.selected_bot_time_to_act_river
+            selected_time_to_wait_board = settings.selected_time_to_wait_board
+            debug_ranges_stop_point = settings.debug_ranges_stop_point
+            debug_ranges = settings.debug_ranges
+            debug_postflop = settings.debug_postflop
+            debug_postflop_stop_point = settings.debug_postflop_stop_point
+            hero = settings.hero
+            dealer_bot = settings.dealer_bot
+            followfish = settings.followfish
+
+            #set timings for fast speed
+            settings.bot_time_to_act = 0
+            settings.bot_time_to_act_preflop = 0
+            settings.bot_time_to_act_flop = 0
+            settings.bot_time_to_act_turn = 0
+            settings.bot_time_to_act_river = 0
+            settings.time_to_wait_board = 0
+            settings.selected_bot_time_to_act = 0
+            settings.selected_bot_time_to_act_preflop = 0
+            settings.selected_bot_time_to_act_flop = 0
+            settings.selected_bot_time_to_act_turn = 0
+            settings.selected_bot_time_to_act_river = 0
+            settings.selected_time_to_wait_board = 0
+            settings.debug_ranges_stop_point = 0
+            settings.debug_ranges = 0
+            settings.debug_postflop = 0
+            settings.debug_postflop_stop_point = 0
+            settings.analyse_fast_speed = 1
+            settings.hand_history = 0 #turn off hand history
+            settings.hero = 'hero'
+            settings.dealer_bot = 1
+            settings.followfish = ""
+            settings.report_bbv0 = " "
+            settings.report_bbv1 = " "
+            settings.report_bbv2 = " "
+            settings.report_bbv3 = " "
+            settings.report_bbv4 = " "
+            settings.report_bbv5 = " "
+            settings.analyse_match = 0
+
+            #run analyser
+            end_condition = hudanalyser.run()
+            settings.matched = 0
+
+            #after successful report exit and return
+            #default timings
+            settings.bot_time_to_act = bot_time_to_act
+            settings.bot_time_to_act_preflop = bot_time_to_act_preflop
+            settings.bot_time_to_act_flop = bot_time_to_act_flop
+            settings.bot_time_to_act_turn = bot_time_to_act_turn
+            settings.bot_time_to_act_river = bot_time_to_act_river
+            settings.time_to_wait_board = time_to_wait_board
+            settings.selected_bot_time_to_act = selected_bot_time_to_act
+            settings.selected_bot_time_to_act_preflop = selected_bot_time_to_act_preflop
+            settings.selected_bot_time_to_act_flop = selected_bot_time_to_act_flop
+            settings.selected_bot_time_to_act_turn = selected_bot_time_to_act_turn
+            settings.selected_bot_time_to_act_river = selected_bot_time_to_act_river
+            settings.selected_time_to_wait_board = selected_time_to_wait_board
+            settings.debug_ranges_stop_point = debug_ranges_stop_point
+            settings.debug_ranges = debug_ranges
+            settings.debug_postflop = debug_postflop
+            settings.debug_postflop_stop_point = debug_postflop_stop_point
+            #restart analyser
+            settings.bbvals0 = 0
+            settings.bbvals1 = 0
+            settings.bbvals2 = 0
+            settings.bbvals3 = 0
+            settings.bbvals4 = 0
+            settings.bbvals5 = 0
+            settings.bbv0 = "   "
+            settings.bbv1 = "   "
+            settings.bbv2 = "   "
+            settings.bbv3 = "   "
+            settings.bbv4 = "   "
+            settings.bbv5 = "   "
+            #restore previous state
+            settings.hero = hero
+            settings.dealer_bot = dealer_bot
+            settings.followfish = followfish
+            settings.report_bbv0 = " "
+            settings.report_bbv1 = " "
+            settings.report_bbv2 = " "
+            settings.report_bbv3 = " "
+            settings.report_bbv4 = " "
+            settings.report_bbv5 = " "
+            settings.analyse_match = 0
+            settings.analyser_flag = 0 #end analyser
+    except:
+        print(settings.RESET)
+        #restart analyser
+        settings.analyser_flag = 0 #end analyser
+        settings.bbvals0 = 0
+        settings.bbvals1 = 0
+        settings.bbvals2 = 0
+        settings.bbvals3 = 0
+        settings.bbvals4 = 0
+        settings.bbvals5 = 0
+        settings.bbv0 = "   "
+        settings.bbv1 = "   "
+        settings.bbv2 = "   "
+        settings.bbv3 = "   "
+        settings.bbv4 = "   "
+        settings.bbv5 = "   "
+        settings.hero = 'hero'
+        settings.dealer_bot = 1
+        settings.followfish = ""
+        settings.report_bbv0 = " "
+        settings.report_bbv1 = " "
+        settings.report_bbv2 = " "
+        settings.report_bbv3 = " "
+        settings.report_bbv4 = " "
+        settings.report_bbv5 = " "
+        settings.analyse_match = 0
+        settings.analyser_flag = 0
+        settings.analyse_fast_speed = 0
+        #after successful report exit and return
+        #default timings
+        settings.bot_time_to_act = bot_time_to_act
+        settings.bot_time_to_act_preflop = bot_time_to_act_preflop
+        settings.bot_time_to_act_flop = bot_time_to_act_flop
+        settings.bot_time_to_act_turn = bot_time_to_act_turn
+        settings.bot_time_to_act_river = bot_time_to_act_river
+        settings.time_to_wait_board = time_to_wait_board
+        settings.selected_bot_time_to_act = selected_bot_time_to_act
+        settings.selected_bot_time_to_act_preflop = selected_bot_time_to_act_preflop
+        settings.selected_bot_time_to_act_flop = selected_bot_time_to_act_flop
+        settings.selected_bot_time_to_act_turn = selected_bot_time_to_act_turn
+        settings.selected_bot_time_to_act_river = selected_bot_time_to_act_river
+        settings.selected_time_to_wait_board = selected_time_to_wait_board
+        settings.debug_ranges_stop_point = debug_ranges_stop_point
+        settings.debug_ranges = debug_ranges
+        settings.debug_postflop = debug_postflop
+        settings.debug_postflop_stop_point = debug_postflop_stop_point
+        #restart analyser
+        settings.bbvals0 = 0
+        settings.bbvals1 = 0
+        settings.bbvals2 = 0
+        settings.bbvals3 = 0
+        settings.bbvals4 = 0
+        settings.bbvals5 = 0
+        settings.bbv0 = "   "
+        settings.bbv1 = "   "
+        settings.bbv2 = "   "
+        settings.bbv3 = "   "
+        settings.bbv4 = "   "
+        settings.bbv5 = "   "
+        #restore previous state
+        settings.hero = hero
+        settings.dealer_bot = dealer_bot
+        settings.followfish = followfish
+        settings.report_bbv0 = " "
+        settings.report_bbv1 = " "
+        settings.report_bbv2 = " "
+        settings.report_bbv3 = " "
+        settings.report_bbv4 = " "
+        settings.report_bbv5 = " "
+        settings.analyse_match = 0
+        settings.analyser_flag = 0 #end analyser
+
+    
     
 #v View type
 def view_select():
@@ -1643,7 +1845,7 @@ while(1):
             print('r Range view/edit')
             print('s Spin & Go game')
             print('t Tournament game')
-            #print('u User manual')
+            print('u Heads Up Analyzer')
             print('v View type')
             #print("x Hud on/off")
             print('y School in/out')
@@ -1732,6 +1934,10 @@ while(1):
             mtt()
         elif choice == 'ht':
             help_mtt()
+        elif choice == 'u':
+            hudanalyzer()
+        elif choice == 'hu':
+            help_hudanalyzer()
         elif choice == 'v':
             view_select()
         elif choice == 'hv':
