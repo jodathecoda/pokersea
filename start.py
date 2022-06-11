@@ -42,18 +42,18 @@ if incognito:
     settings.oldview = 4
     #settings.colors_on = 0
 
-if os.name == 'posix':
-	settings.fancy = 1
-	settings.suit_characters = 1
-	settings.club = '\u2663'
-	settings.diamond = '\u2666'
-	settings.heart = '\u2665'
-	settings.spade = '\u2660'
-	settings.colors_on = 1
-	settings.spade = settings.GREY + settings.spade + settings.RESET
-	settings.heart = settings.RED + settings.heart + settings.RESET
-	settings.diamond = settings.BLUE + settings.diamond + settings.RESET
-	settings.club = settings.GREEN + settings.club + settings.RESET
+#if os.name == 'posix':
+settings.fancy = 1
+settings.suit_characters = 1
+settings.club = '\u2663'
+settings.diamond = '\u2666'
+settings.heart = '\u2665'
+settings.spade = '\u2660'
+settings.colors_on = 1
+settings.spade = settings.GREY + settings.spade + settings.RESET
+settings.heart = settings.RED + settings.heart + settings.RESET
+settings.diamond = settings.BLUE + settings.diamond + settings.RESET
+settings.club = settings.GREEN + settings.club + settings.RESET
 
 #initialize hand history buffer
 settings.hand_history_buffer = settings.Hand_History_Buffer()

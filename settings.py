@@ -83,6 +83,20 @@ global redfish_seated
 redfish_seated = 0
 
 #HuAnalyzer redfish open
+huanalyzer_open = ['aa', 'aks', 'aqs', 'ajs', 'ats', 'a9s', 'a8s', 'a7s', 'a6s', 'a5s', 'a4s', 'a3s', 'a2s', \
+             'ako', 'kk', 'kqs', 'kjs', 'kts', 'k9s', 'k8s', 'k7s', 'k6s', 'k5s', 'k4s', 'k3s', 'k2s', \
+             'aqo', 'kqo', 'qq', 'qjs', 'qts', 'q9s', 'q8s', 'q7s', 'q6s', 'q5s', 'q4s', 'q3s', 'q2s', \
+             'ajo', 'kjo', 'qjo', 'jj', 'jts', 'j9s', 'j8s', 'j7s', 'j6s', 'j5s', 'j4s', 'j3s', 'j2s', \
+             'ato', 'kto', 'qto', 'jto', 'tt', 't9s', 't8s', 't7s', 't6s', 't5s', 't4s', 't3s', 't2s', \
+             'a9o', 'k9o', 'q9o', 'j9o', 't9o', '99', '98s', '97s', '96s', '95s', '94s', '93s', '92s', \
+             'a8o', 'k8o', 'q8o', 'j8o', 't8o', '98o', '88', '87s', '86s', '85s', '84s', '83s', '82s', \
+             'a7o', 'k7o', 'q7o', 'j7o', 't7o', '97o', '87o', '77', '76s', '75s', '74s', '73s', '72s', \
+             'a6o', 'k6o', 'q6o', 'j6o', 't6o', '96o', '86o', '76o', '66', '65s', '64s', '63s', '62s', \
+             'a5o', 'k5o', 'q5o', 'j5o', 't5o', '95o', '85o', '75o', '65o', '55', '54s', '53s', '52s', \
+             'a4o', 'k4o', 'q4o', 'j4o', 't4o', '94o', '84o', '74o', '64o', '54o', '44', '43s', '42s', \
+             'a3o', 'k3o', 'q3o', 'j3o', 't3o', '93o', '83o', '73o', '63o', '53o', '43o', '33', '32s', \
+             'a2o', 'k2o', 'q2o', 'j2o', 't2o', '92o', '82o', '72o', '62o', '52o', '42o', '32o', '22', ]
+'''
 huanalyzer_open = ['aa', 'aks', 'aqs', 'ajs', 'ats', 'a9s', 'a8s', 'a7s' ,'a6s', 'a5s', 'a4s', 'a3s', 'a2s', \
                                               'ako', 'kk', 'kqs', 'kjs', 'kts', 'k9s', 'k8s', 'k7s', 'k6s', 'k5s', 'k4s', 'k3s', 'k2s', \
                                               'aqo', 'kqo', 'qq', 'qjs', 'qts', 'q9s', 'q8s', 'q7s',                                    \
@@ -96,6 +110,7 @@ huanalyzer_open = ['aa', 'aks', 'aqs', 'ajs', 'ats', 'a9s', 'a8s', 'a7s' ,'a6s',
                                               'a4o',                                                              '44',                 \
                                               'a3o',                                                                     '33',          \
                                               'a2o',                                                                           '22'     ]
+'''
 
 #HuAnalyzer redfish call 3bet
 huanalyzer_call3bet = ['aa', 'kk', 'qq', 'jj', 'tt', 'aks', '99', 'aqs', 'ako', 'ajs', 'kqs', '88', 'ats', 'aqo', '77', 'a9s', 'a8s', 'a7s', 'a6s', 'a5s', 'a4s', 'a3s', 'a2s', 'ajo', 'ato', 'a9o', 'a8o', 'kqo']
@@ -265,13 +280,13 @@ global oldview
 oldview = 1 #this is for returning old view after wsop
 
 global colors_on
-colors_on = 0
+colors_on = 1
 
 global fancy
-fancy = 0
+fancy = 1
 
 global suit_characters
-suit_characters = 0
+suit_characters = 1
 
 global debug_special_moves
 debug_special_moves = 0 #stop point for special moves
