@@ -736,7 +736,7 @@ def betsizing(table, name, defending_range, game_type, smallblind, ante):
                     rangeeditor.print_debug_color_ranges(card1, card2, calling_range_colors, raising_range_colors, open_range_colors)
             else:
                 if settings.hudanalyser == 1:
-                    open_range = settings.huanalyzer_open
+                    open_range_colors = settings.huanalyzer_open
                 else:
                     open_range_colors = raising_range + calling_range
                 raising_range_colors = []
