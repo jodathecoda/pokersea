@@ -1207,6 +1207,76 @@ def help():
     dumb = input("]")
 
 def run():
+
+    #HuAnalyzer redfish open
+    settings.huanalyzer_open = []
+
+    #HuAnalyzer redfish call 3bet
+    settings.huanalyzer_call3bet = []
+
+    #HuAnalyzer 3bet from blackfish
+    settings.huanalyzer_3bet = []
+
+    #HuAnalyzer_call blackfish
+    settings.huanalyzer_call = []
+
+    #HuAnalyzer redfish open
+    selected_file = "fishes/redfish/ranges/hd_openAnalyzer.range"
+    selected_range = "hd_openAnalyzer.range"
+    try:
+        f = open(selected_file,'r')
+        with f:
+            lines = f.read().splitlines()
+        f.close()
+        for l in lines:
+            settings.huanalyzer_open.append(l)
+    except IOError:
+        print("no such file: " + selected_file)
+        dumb = input("]")
+
+    #HuAnalyzer redfish call 3bet
+    selected_file = "fishes/redfish/ranges/hd_call3betAnalyzer.range"
+    selected_range = "hd_call3betAnalyzer.range"
+    try:
+        f = open(selected_file,'r')
+        with f:
+            lines = f.read().splitlines()
+        f.close()
+        for l in lines:
+            settings.huanalyzer_call3bet.append(l)
+    except IOError:
+        print("no such file: " + selected_file)
+        dumb = input("]")
+
+    #HuAnalyzer_call blackfish
+    selected_file = "fishes/blackfish/ranges/hb_callAnalyzer.range"
+    selected_range = "hb_callAnalyzer.range"
+    try:
+        f = open(selected_file,'r')
+        with f:
+            lines = f.read().splitlines()
+        f.close()
+        for l in lines:
+            settings.huanalyzer_call.append(l)
+    except IOError:
+        print("no such file: " + selected_file)
+        dumb = input("]")
+    
+    #HuAnalyzer 3bet from blackfish
+    selected_file = "fishes/blackfish/ranges/hb_3betAnalyzer.range"
+    selected_range = "hb_3betAnalyzer.range"
+    try:
+        f = open(selected_file,'r')
+        with f:
+            lines = f.read().splitlines()
+        f.close()
+        for l in lines:
+            settings.huanalyzer_3bet.append(l)
+    except IOError:
+        print("no such file: " + selected_file)
+        dumb = input("]")
+
+
     analysis_end = 0
     #starting conditions for analyser
     allcards = ['as', 'ks', 'qs', 'js', 'ts', '9s', '8s', '7s', '6s', '5s', '4s', '3s', '2s', \

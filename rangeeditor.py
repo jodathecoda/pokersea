@@ -29,17 +29,153 @@ def editrange():
         time.sleep(7)
         settings.print_logo()
         if fish == "redfish":
-            print("select range to edit:")
-            print("0  heads up dealer open")
-            print("1  heads up dealer call 3bet")
-            print("q  quit")
-            dumb = input("]")
+            get_out = 1
+            while(get_out):
+                settings.print_logo()
+                print("select range to edit:")
+                print("0  heads up dealer open")
+                print("1  heads up dealer call 3bet")
+                print("q  quit")
+                selected = input("]")
+                selected_file = "notselected"
+                selected_range = "no range"
+                if selected == '0':
+                    selected_file = "fishes/" + fish + "/ranges/hd_openAnalyzer.range"
+                    selected_range = "hd_openAnalyzer.range"
+                elif selected == '1':
+                    selected_file = "fishes/" + fish + "/ranges/hd_call3betAnalyzer.range"
+                    selected_range = "hd_call3betAnalyzer.range"
+                else:
+                    print("back to main menu")
+                    time.sleep(2)
+                    get_out = 0
+                if selected_file != "notselected":
+                    try:
+                        f = open(selected_file,'r')
+                        with f:
+                            lines = f.read().splitlines()
+                        f.close()
+                    except IOError:
+                        print("no such file" + selected_file)
+                        dumb = input("]")
+                    if settings.colors_on:
+                        print_color_range_lines(lines)
+                    else:
+                        print_range_lines(lines)
+                    candidate = ""
+                    while(candidate != 'q'):
+                        settings.print_logo()
+                        print(fish + " " + selected_range)
+                        print("add/remove cards to this range. 'q' to quit. example: aks kjo tt 32o")
+                        if settings.colors_on:
+                            print_color_range_lines(lines)
+                        else:
+                            print_range_lines(lines)
+                        candidate = input("]")
+                        if candidate == 'q':
+                            pass
+                        elif candidate in settings.allcards:
+                            if candidate not in lines:
+                                lines.append(candidate)
+                                if settings.colors_on:
+                                    print_color_range_lines(lines)
+                                else:
+                                    print_range_lines(lines)
+                            else:
+                                lines.remove(candidate)
+                                if settings.colors_on:
+                                    print_color_range_lines(lines)
+                                else:
+                                    print_range_lines(lines)
+                        else:
+                            print("not valid")
+                            time.sleep(2)
+                    try:
+                        f = open(selected_file,'w')
+                        with f:
+                            for counter in range(0,len(lines)):
+                                f.write(lines[counter] + "\n")
+                                
+                        f.close()
+                        settings.pokerpool.update_all()
+                    except IOError:
+                        print("no such file" + selected_file)
+                        dumb = input("]")
+
+
         elif fish == "blackfish":
-            print("select range to edit:")
-            print("0  heads up big blind call")
-            print("1  heads up big blind 3bet")
-            print("q  quit")
-            dumb = input("]")
+            get_out = 1
+            while(get_out):
+                settings.print_logo()
+                print("select range to edit:")
+                print("0  heads up big blind call")
+                print("1  heads up big blind 3bet")
+                print("q  quit")
+                selected = input("]")
+                selected_file = "notselected"
+                selected_range = "no range"
+                if selected == '0':
+                    selected_file = "fishes/" + fish + "/ranges/hb_callAnalyzer.range"
+                    selected_range = "hb_callAnalyzer.range"
+                elif selected == '1':
+                    selected_file = "fishes/" + fish + "/ranges/hb_3betAnalyzer.range"
+                    selected_range = "hb_3betAnalyzer.range"
+                else:
+                    print("back to main menu")
+                    time.sleep(2)
+                    get_out = 0
+                if selected_file != "notselected":
+                    try:
+                        f = open(selected_file,'r')
+                        with f:
+                            lines = f.read().splitlines()
+                        f.close()
+                    except IOError:
+                        print("no such file" + selected_file)
+                        dumb = input("]")
+                    if settings.colors_on:
+                        print_color_range_lines(lines)
+                    else:
+                        print_range_lines(lines)
+                    candidate = ""
+                    while(candidate != 'q'):
+                        settings.print_logo()
+                        print(fish + " " + selected_range)
+                        print("add/remove cards to this range. 'q' to quit. example: aks kjo tt 32o")
+                        if settings.colors_on:
+                            print_color_range_lines(lines)
+                        else:
+                            print_range_lines(lines)
+                        candidate = input("]")
+                        if candidate == 'q':
+                            pass
+                        elif candidate in settings.allcards:
+                            if candidate not in lines:
+                                lines.append(candidate)
+                                if settings.colors_on:
+                                    print_color_range_lines(lines)
+                                else:
+                                    print_range_lines(lines)
+                            else:
+                                lines.remove(candidate)
+                                if settings.colors_on:
+                                    print_color_range_lines(lines)
+                                else:
+                                    print_range_lines(lines)
+                        else:
+                            print("not valid")
+                            time.sleep(2)
+                    try:
+                        f = open(selected_file,'w')
+                        with f:
+                            for counter in range(0,len(lines)):
+                                f.write(lines[counter] + "\n")
+                                
+                        f.close()
+                        settings.pokerpool.update_all()
+                    except IOError:
+                        print("no such file" + selected_file)
+                        dumb = input("]")
         else:
             print("back to main menu")
             time.sleep(2)
