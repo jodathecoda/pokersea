@@ -22,7 +22,7 @@ def editrange():
         settings.print_logo()
     elif fish in settings.referencefishes:
         settings.print_logo()
-        print("reference fish - can not be modified")
+        print(fish + " is a reference fish - can not be modified")
         print("only redfish and blackfish for heads up analyzer:")
         print("redfish (HD) ranges: open, call3bet")
         print("blackfish (HB) ranges: call, 3bet")
