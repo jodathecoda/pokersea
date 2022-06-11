@@ -21,9 +21,28 @@ def editrange():
         time.sleep(2)
         settings.print_logo()
     elif fish in settings.referencefishes:
-        print("reference fish - can not be modified")
-        time.sleep(2)
         settings.print_logo()
+        print("reference fish - can not be modified")
+        print("only redfish and blackfish for heads up analyzer:")
+        print("redfish (HD) ranges: open, call3bet")
+        print("blackfish (HB) ranges: call, 3bet")
+        time.sleep(7)
+        settings.print_logo()
+        if fish == "redfish":
+            print("select range to edit:")
+            print("0  heads up dealer open")
+            print("1  heads up dealer call 3bet")
+            print("q  quit")
+            dumb = input("]")
+        elif fish == "blackfish":
+            print("select range to edit:")
+            print("0  heads up big blind call")
+            print("1  heads up big blind 3bet")
+            print("q  quit")
+            dumb = input("]")
+        else:
+            print("back to main menu")
+            time.sleep(2)
     else:
         get_out = 1
         while(get_out):

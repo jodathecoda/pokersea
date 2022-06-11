@@ -1509,9 +1509,12 @@ def help_mtt():
 
 #u
 def help_hudanalyzer():
-    print("select headsup dealer range, select bigblind range.")
+    print("Simplified holdem game - no 4 bets preflop")
+    print("redfish vs blackfish.")
     print("postflop skills will be the same, so analyze is heads")
-    print("up preflop ranges.")
+    print("up preflop ranges. Select appropriate ranges from")
+    print("rangeeditor. redfish: open and call3bet range")
+    print("blackfish: call and 3bet range.")
 
 def hudanalyzer():
     settings.hudanalyser = 1
