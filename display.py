@@ -455,6 +455,7 @@ def display_tables_analyser(table, iterations, matched):
     settings.print_logo_analyser_action()
     if settings.analysis_end:
         print_a_table_analysis(table, iterations, matched)
+        print("open bet sizing: " + settings.huanalyzer_open_size)
         dumb = input("[end of analysis]")
         settings.analysis_end = 0
     elif settings.analyse_fast_speed:

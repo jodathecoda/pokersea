@@ -1192,8 +1192,8 @@ class Analyser():
                 choice = input("]")
                 if choice == 'q':
                     return
-        if settings.hudanalyser:
-            print("open bet sizing: " + settings.huanalyzer_open_size)
+        #if settings.hudanalyser:
+        #    print("open bet sizing: " + settings.huanalyzer_open_size)
 
 def remove_cards_from_deck(the_deck, card):
    return [value for value in the_deck if value != card]
