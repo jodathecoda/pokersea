@@ -131,6 +131,30 @@ def bot_act(table, seat, street, game_type, smallblind, ante, tables):
                             respond_range = selectrange.rangeselector(situation, t, s.name, smallblind, ante)
                         #dumb = input("after")
                         newbet = common.betsizing(t, s.name, respond_range, game_type, smallblind, ante)
+                        '''
+                        if settings.hudanalyser and newbet > 0:
+                            #if hand in open range, use predefined open size
+                            if settings.huanalyzer_open_size == "0":
+                                #open fold each hand
+                                newbet = 0
+                            elif settings.huanalyzer_open_size == "2":
+                                # bot uses min raise
+                                newbet = 40
+                            elif settings.huanalyzer_open_size == "2.5":
+                                # x2.5
+                                newbet = 50
+                            elif settings.huanalyzer_open_size == "3":
+                                # x3
+                                newbet = 60
+                            elif settings.huanalyzer_open_size == "3.5":
+                                # x3
+                                newbet = 70
+                            else:
+                                dumb = input("error in preflop open bet size")
+                                # x2.5
+                                newbet = 50
+                            '''
+                        #dumb = input("preflop size: " + str(newbet))
                         if s.want_to_push:
                             if newbet > 0:
                                 newbet = s.stack

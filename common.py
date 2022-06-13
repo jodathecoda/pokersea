@@ -764,8 +764,29 @@ def betsizing(table, name, defending_range, game_type, smallblind, ante):
                         if s.last3bets > 0:
                             s.last3bets -= 1 #reduce
             else:
+                # HERE HERE huanalyzer open size
+                if settings.hudanalyser:
+                    #if hand in open range, use predefined open size
+                    if settings.huanalyzer_open_size == "0":
+                        #open fold each hand
+                        want_to_bet = 0
+                    elif settings.huanalyzer_open_size == "2":
+                        # bot uses min raise
+                        want_to_bet = smallblind*2*2 + ante - current_bet
+                    elif settings.huanalyzer_open_size == "2.5":
+                        # x2.5
+                        want_to_bet = smallblind*2*2.5 + ante - current_bet
+                    elif settings.huanalyzer_open_size == "3":
+                        # x3
+                        want_to_bet = smallblind*2*3 + ante - current_bet
+                    elif settings.huanalyzer_open_size == "3.5":
+                        # x3
+                        want_to_bet = smallblind*2*3.5 + ante - current_bet
+                    else:
+                        # x2.5
+                        want_to_bet = smallblind*2*2.5 + ante - current_bet
                 #we open if heads up or spins and someone is shortstack under 10 BBS we limp
-                if effective_stacks < 30 and gamblers < 4:
+                elif effective_stacks < 30 and gamblers < 4:
                     short_stack_on_table = 0
                     for s in t.seats:
                         if s.stack != 0 and s.card1 != "  " and s.stack/smallblind*2 < 10:

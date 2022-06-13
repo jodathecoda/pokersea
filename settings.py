@@ -82,6 +82,9 @@ hudanalyser = 0
 global redfish_seated
 redfish_seated = 0
 
+#HuAnalyzer open size, default is 2.5 BB
+huanalyzer_open_size = "2.5"
+
 #HuAnalyzer redfish open
 huanalyzer_open = []
 

@@ -1192,7 +1192,8 @@ class Analyser():
                 choice = input("]")
                 if choice == 'q':
                     return
-
+        if settings.hudanalyser:
+            print("open bet sizing: " + settings.huanalyzer_open_size)
 
 def remove_cards_from_deck(the_deck, card):
    return [value for value in the_deck if value != card]
@@ -1622,15 +1623,15 @@ def run():
 
         #print(" ")
         #print("Is this the correct setup? y/n")
-        answers = ['y', 'yes', 'Yes', 'n', 'no', 'No']
+        answers = ['0', '2', '2.5', '3', '3.5']
         answer = ""
         while answer not in answers:
             display.print_a_dummy_table(dum_tab)
             print(" ")
-            print("Is this the correct setup? y/n")
-            answer = input("[y/n]")
-        if answer == 'y' or answer == 'Y' or answer == 'yes' or answer == 'Yes':
-
+            print("Select open size: [0, 2, 2.5 , 3 , 3.5]")
+            answer = input("]")
+        if answer in answers:
+            settings.huanalyzer_open_size = answer
             #continue analysis
             analysed_seat0 = AnalysedSeat(card01, card02, 'D', stack0)
             analysed_seat1 = AnalysedSeat(card11, card12, ' ', stack1)
@@ -1659,7 +1660,7 @@ def run():
             #dumb = input("[end report]")
             return 0
         else:
-            return 1
+            pass
     else:
         print(" ")
         print("less than 2 bots have stacks")
