@@ -735,7 +735,7 @@ def print_bye_cards():
             if colors_on:
                 suit2 = GREEN + suit2 + RESET
     #print(rank1 + suit1 + " " + rank2 + suit2)
-    if fancy and os.name == 'posix':
+    if fancy:
         print("")
         print(" ___")
         print("|" + rank1 + suit1 + " |___")
