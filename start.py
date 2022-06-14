@@ -55,8 +55,35 @@ settings.heart = settings.RED + settings.heart + settings.RESET
 settings.diamond = settings.BLUE + settings.diamond + settings.RESET
 settings.club = settings.GREEN + settings.club + settings.RESET
 
+suit_spade = settings.spade
+suit_heart = settings.heart
+suit_diamond = settings.diamond
+suit_club = settings.club
+
+def replace_all(text, dic):
+    for i, j in dic.items():
+        text = text.replace(i, j)
+    return text
+
+replace_dictionary = {'as': 'A' + suit_spade, 'ah': 'A' + suit_heart, 'ad': 'A' + suit_diamond, 'ac': 'A' + suit_club, \
+                      'ks': 'K' + suit_spade, 'kh': 'K' + suit_heart, 'kd': 'K' + suit_diamond, 'kc': 'K' + suit_club, \
+                      'qs': 'Q' + suit_spade, 'qh': 'Q' + suit_heart, 'qd': 'Q' + suit_diamond, 'qc': 'Q' + suit_club, \
+                      'js': 'J' + suit_spade, 'jh': 'J' + suit_heart, 'jd': 'J' + suit_diamond, 'jc': 'J' + suit_club, \
+                      'ts': 'T' + suit_spade, 'th': 'T' + suit_heart, 'td': 'T' + suit_diamond, 'tc': 'T' + suit_club, \
+                      '9s': '9' + suit_spade, '9h': '9' + suit_heart, '9d': '9' + suit_diamond, '9c': '9' + suit_club, \
+                      '8s': '8' + suit_spade, '8h': '8' + suit_heart, '8d': '8' + suit_diamond, '8c': '8' + suit_club, \
+                      '7s': '7' + suit_spade, '7h': '7' + suit_heart, '7d': '7' + suit_diamond, '7c': '7' + suit_club, \
+                      '6s': '6' + suit_spade, '6h': '6' + suit_heart, '6d': '6' + suit_diamond, '6c': '6' + suit_club, \
+                      '5s': '5' + suit_spade, '5h': '5' + suit_heart, '5d': '5' + suit_diamond, '5c': '5' + suit_club, \
+                      '4s': '4' + suit_spade, '4h': '4' + suit_heart, '4d': '4' + suit_diamond, '4c': '4' + suit_club, \
+                      '3s': '3' + suit_spade, '3h': '3' + suit_heart, '3d': '3' + suit_diamond, '3c': '3' + suit_club, \
+                      '2s': '2' + suit_spade, '2h': '2' + suit_heart, '2d': '2' + suit_diamond, '2c': '2' + suit_club
+                      }
+
 #initialize hand history buffer
 settings.hand_history_buffer = settings.Hand_History_Buffer()
+
+
 
 class Hand:
     def __init__(self, startLine, stopLine):
@@ -70,17 +97,32 @@ class Hand:
             return False
 
     def printHand(self):
-        print("------Start Hand------")
-        lines = []
-        for liiness in settings.hand_history_buffer.hhb:
-            lines.append(liiness)
-        #lines = fp.readlines()
-        i = self.startLine
-        while(i >= self.startLine and i <= self.stopLine):
-            print(lines[i])
-            i+=1
-        print("------Stop Hand------")
-        print(" ")
+        if settings.fancy and settings.colors_on:
+            print("------Start Hand------")
+            lines = []
+            for liiness in settings.hand_history_buffer.hhb:
+                lines.append(liiness)
+            #lines = fp.readlines()
+            i = self.startLine
+            while(i >= self.startLine and i <= self.stopLine):
+                #print(lines[i])
+                fancy_line = replace_all(lines[i], replace_dictionary)
+                print(fancy_line)
+                i+=1
+            print("------Stop Hand------")
+            print(" ")
+        else:
+            print("------Start Hand------")
+            lines = []
+            for liiness in settings.hand_history_buffer.hhb:
+                lines.append(liiness)
+            #lines = fp.readlines()
+            i = self.startLine
+            while(i >= self.startLine and i <= self.stopLine):
+                print(lines[i])
+                i+=1
+            print("------Stop Hand------")
+            print(" ")
 print(" ")
 
 def getSelectedHands():
