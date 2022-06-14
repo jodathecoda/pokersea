@@ -1584,10 +1584,10 @@ def bot_act(table, seat, street, game_type, smallblind, ante, tables):
                         s.stack = (s.stack - newbet)
                     if s.bet == biggest_bet:
                         common.update_total_pot(t)
-                        history_line = s.name + ": calls " + str(s.bet - s.oldbet) + "\n"
+                        history_line = s.name + ": call " + str(s.bet - s.oldbet) + "\n"
                     else:
                         common.update_total_pot(t)
-                        history_line = s.name + ": bets " + str(s.bet - s.oldbet) + "\n"
+                        history_line = s.name + ": bet " + str(s.bet - s.oldbet) + "\n"
                 settings.total_pot = 0
                 for seeds in t.seats:
                     settings.total_pot += seeds.bet

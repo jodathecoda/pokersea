@@ -129,7 +129,7 @@ class Tournament:
                     pot += self.ante
                 if settings.hand_history:
                     common.update_total_pot(t)
-                    hand_history_line = s.name + " posts " + str(s.bet) + "\n"
+                    hand_history_line = s.name + " post " + str(s.bet) + "\n"
                     settings.imported_list_preflop.append(hand_history_line)
         return pot
 
@@ -321,7 +321,7 @@ class Tournament:
             t.pot += t.seats[db_p].bet
             if settings.hand_history:
                 common.update_total_pot(t)
-                hand_history_line = "" + t.seats[db_p].name + " posts " + str(t.seats[db_p].bet) + "\n"
+                hand_history_line = "" + t.seats[db_p].name + " post " + str(t.seats[db_p].bet) + "\n"
                 settings.imported_list_preflop.append(hand_history_line)
                 
             next_p = common.find_next_occupied_chair(t, db_p)
@@ -335,7 +335,7 @@ class Tournament:
             t.pot += t.seats[next_p].bet
             if settings.hand_history:
                 common.update_total_pot(t)
-                hand_history_line = "" + t.seats[next_p].name + " posts " + str(t.seats[next_p].bet) + "\n"
+                hand_history_line = "" + t.seats[next_p].name + " post " + str(t.seats[next_p].bet) + "\n"
                 settings.imported_list_preflop.append(hand_history_line)
         else:
             #normal rules d +sb +h
@@ -350,7 +350,7 @@ class Tournament:
             t.pot += t.seats[next_p].bet
             if settings.hand_history:
                 common.update_total_pot(t)
-                hand_history_line = "" + t.seats[next_p].name + " posts " + str(t.seats[next_p].bet) + "\n"
+                hand_history_line = "" + t.seats[next_p].name + " post " + str(t.seats[next_p].bet) + "\n"
                 settings.imported_list_preflop.append(hand_history_line)
         
             nextnext_p = common.find_next_occupied_chair(t, next_p)
@@ -363,7 +363,7 @@ class Tournament:
             t.pot += t.seats[nextnext_p].bet
             if settings.hand_history:
                 common.update_total_pot(t)
-                hand_history_line = "" + t.seats[nextnext_p].name + " posts " + str(t.seats[nextnext_p].bet) + "\n"
+                hand_history_line = "" + t.seats[nextnext_p].name + " post " + str(t.seats[nextnext_p].bet) + "\n"
                 settings.imported_list_preflop.append(hand_history_line)
         #t.pot fix bug
         if self.ante:
