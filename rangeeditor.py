@@ -22,27 +22,26 @@ def editrange():
         settings.print_logo()
     elif fish in settings.referencefishes:
         settings.print_logo()
-        print(fish + " is a reference fish - can not be modified")
-        print("only redfish and blackfish for heads up analyzer:")
-        print("redfish (HD) ranges: open, call3bet")
-        print("blackfish (HB) ranges: call, 3bet")
-        time.sleep(7)
-        settings.print_logo()
-        if fish == "redfish":
+        if (fish == "milkfish" or fish == "yellowfish"):
+            print(fish + " is a reference fish - can not be modified")
+            print("back to main menu")
+            time.sleep(2)
+        elif fish == "redfish":
+            settings.print_logo()
             get_out = 1
             while(get_out):
                 settings.print_logo()
-                print("select range to edit:")
-                print("0  heads up dealer open")
-                print("1  heads up dealer call 3bet")
+                print("select Heads Up Analyzer range to edit:")
+                print("1  heads up dealer open")
+                print("2  heads up dealer call 3bet")
                 print("q  quit")
                 selected = input("]")
                 selected_file = "notselected"
                 selected_range = "no range"
-                if selected == '0':
+                if selected == '1':
                     selected_file = "fishes/" + fish + "/ranges/hd_openAnalyzer.range"
                     selected_range = "hd_openAnalyzer.range"
-                elif selected == '1':
+                elif selected == '2':
                     selected_file = "fishes/" + fish + "/ranges/hd_call3betAnalyzer.range"
                     selected_range = "hd_call3betAnalyzer.range"
                 else:
@@ -102,22 +101,21 @@ def editrange():
                         print("no such file" + selected_file)
                         dumb = input("]")
 
-
         elif fish == "blackfish":
             get_out = 1
             while(get_out):
                 settings.print_logo()
                 print("select range to edit:")
-                print("0  heads up big blind call")
-                print("1  heads up big blind 3bet")
+                print("3  heads up big blind call")
+                print("4  heads up big blind 3bet")
                 print("q  quit")
                 selected = input("]")
                 selected_file = "notselected"
                 selected_range = "no range"
-                if selected == '0':
+                if selected == '3':
                     selected_file = "fishes/" + fish + "/ranges/hb_callAnalyzer.range"
                     selected_range = "hb_callAnalyzer.range"
-                elif selected == '1':
+                elif selected == '4':
                     selected_file = "fishes/" + fish + "/ranges/hb_3betAnalyzer.range"
                     selected_range = "hb_3betAnalyzer.range"
                 else:

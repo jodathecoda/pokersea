@@ -1551,12 +1551,26 @@ def help_mtt():
 
 #u
 def help_hudanalyzer():
-    print("Simplified holdem game - no 4 bets preflop")
-    print("redfish vs blackfish.")
-    print("postflop skills will be the same, so analyze is heads")
-    print("up preflop ranges. Select appropriate ranges from")
-    print("rangeeditor. redfish: open and call3bet range")
-    print("blackfish: call and 3bet range.")
+    settings.print_logo_menu()
+    print("Simplified holdem heads up game - no 4 bets preflop")
+    print("DB /DealerButton/ can open with size from 2 up to 3.5")
+    print("Blinds are 10/20, Stacks are 1000 /50BB effective stacks/")
+    print("You choose open bet size:0x /fold/, 2x, 2.5x, 3x or 3.5x")
+    print("BB can raise, or call. If BB raises, DB can call or fold.")
+    print("For DB and BB are used redfish and blackfish, which have")
+    print("same postflop game. This way, the analysis will be ")
+    print("focused on: Position, preflop open size and 4 ranges: ")
+    print("for DB :  (1) open  (2) call after 3bet from BB")
+    print("for BB:   (3) call  (4) 3Bet preflop")
+    print("The ranges can be edited from main menu, when you select")
+    print("redfish (1) and (2) ranges, or blackfish (3) and (4).")
+    print("Editing ranges is only for this HudAnalyzer, it")
+    print("will not affect their ranges for other games, as these")
+    print("two are reference fishes - do not change their strategy.")
+    print("redfish has the positional advantage as he has the button.")
+    print("The result after 10 000 iterations will be displayed in")
+    print("bigblinds/hand won or loss.")
+    dumb = input("]")
 
 def hudanalyzer():
     settings.hudanalyser = 1

@@ -1565,12 +1565,12 @@ def bot_act(table, seat, street, game_type, smallblind, ante, tables):
                 if newbet <= 0:
                     common.update_total_pot(t)
                     if oldbet < common.find_biggest_bet(t):
-                        history_line = s.name + ": folds" + "\n"
+                        history_line = s.name + ": fold" + "\n"
                         s.card1 = "  "
                         s.card2 = "  "
                         s.clock = " "
                     else:
-                        history_line = s.name + ": checks" + "\n"
+                        history_line = s.name + ": check" + "\n"
                 else:
                     if st == 0:
                         s.vbetflag = 1
