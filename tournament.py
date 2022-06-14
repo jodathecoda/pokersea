@@ -435,7 +435,7 @@ class Tournament:
                 
             for counter in range(0,5):
                 if t.seats[counter].button == settings.image_db:
-                    hand_history_line += str(counter) + " is the button\n"
+                    hand_history_line += str(counter) + " is button\n"
                     settings.hand_history_list.append(hand_history_line)
 
             count_s = 0
